@@ -1,0 +1,440 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ─── Auth & User Models ──────────────────────────────────────────────
+
+model User {
+  id             String    @id @default(uuid())
+  email          String    @unique
+  passwordHash   String    @map("password_hash")
+  firstName      String    @map("first_name")
+  lastName       String    @map("last_name")
+  role           UserRole  @default(CANDIDATE)
+  avatarUrl      String?   @map("avatar_url")
+  emailVerified  Boolean   @default(false) @map("email_verified")
+  twoFactorEnabled Boolean @default(false) @map("two_factor_enabled")
+  twoFactorSecret String?  @map("two_factor_secret")
+  isActive       Boolean   @default(true) @map("is_active")
+  lastLoginAt    DateTime? @map("last_login_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  profile             UserProfile?
+  preferences         UserPreferences?
+  sessions            Session[]
+  emailVerifications  EmailVerification[]
+  passwordResets      PasswordReset[]
+  resumes             Resume[]
+  interviews          Interview[]
+  scores              Score[]
+  gdprConsents        GDPRConsent[]
+
+  @@index([email])
+  @@index([role])
+  @@map("users")
+}
+
+enum UserRole {
+  CANDIDATE
+  INTERVIEWER
+  ADMIN
+}
+
+model UserProfile {
+  id                String   @id @default(uuid())
+  userId            String   @unique @map("user_id")
+  phone             String?
+  linkedinUrl       String?  @map("linkedin_url")
+  githubUrl         String?  @map("github_url")
+  portfolioUrl      String?  @map("portfolio_url")
+  bio               String?
+  targetRole        String?  @map("target_role")
+  experienceYears   Int?     @map("experience_years")
+  skills            String[] @default([])
+  education         String?
+  currentCompany    String?  @map("current_company")
+  preferredLanguage String?  @default("English") @map("preferred_language")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+}
+
+model UserPreferences {
+  id                    String   @id @default(uuid())
+  userId                String   @unique @map("user_id")
+  emailNotifications    Boolean  @default(true) @map("email_notifications")
+  interviewReminders    Boolean  @default(true) @map("interview_reminders")
+  marketingEmails       Boolean  @default(false) @map("marketing_emails")
+  theme                 String   @default("system")
+  language              String   @default("en")
+  timezone              String   @default("UTC")
+  cameraEnabled         Boolean  @default(true) @map("camera_enabled")
+  microphoneEnabled     Boolean  @default(true) @map("microphone_enabled")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String   @map("user_id")
+  token        String   @unique
+  refreshToken String   @unique @map("refresh_token")
+  userAgent    String?  @map("user_agent")
+  ipAddress    String?  @map("ip_address")
+  expiresAt    DateTime @map("expires_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+  @@map("sessions")
+}
+
+model EmailVerification {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@map("email_verifications")
+}
+
+model PasswordReset {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  token     String   @unique
+  expiresAt DateTime @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@map("password_resets")
+}
+
+// ─── Resume ──────────────────────────────────────────────────────────
+
+model Resume {
+  id           String       @id @default(uuid())
+  userId       String       @map("user_id")
+  fileName     String       @map("file_name")
+  fileUrl      String       @map("file_url")
+  fileSize     Int          @map("file_size")
+  mimeType     String       @map("mime_type")
+  status       ResumeStatus @default(PENDING)
+  parsedData   Json?        @map("parsed_data")
+  errorMessage String?      @map("error_message")
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  interviews Interview[]
+
+  @@index([userId])
+  @@index([status])
+  @@map("resumes")
+}
+
+enum ResumeStatus {
+  PENDING
+  PARSING
+  PARSED
+  FAILED
+}
+
+// ─── Interview & Questions ───────────────────────────────────────────
+
+model Interview {
+  id                String          @id @default(uuid())
+  userId            String          @map("user_id")
+  resumeId          String?         @map("resume_id")
+  title             String
+  mode              InterviewMode
+  status            InterviewStatus @default(CREATED)
+  difficultyLevel   DifficultyLevel @default(INTERMEDIATE) @map("difficulty_level")
+  targetRole        String?         @map("target_role")
+  scheduledAt       DateTime?       @map("scheduled_at")
+  startedAt         DateTime?       @map("started_at")
+  completedAt       DateTime?       @map("completed_at")
+  durationMinutes   Int?            @map("duration_minutes")
+  totalQuestions    Int             @default(0) @map("total_questions")
+  currentQuestionIndex Int          @default(0) @map("current_question_index")
+  metadata          Json?
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime        @updatedAt @map("updated_at")
+
+  user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resume             Resume?             @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+  interviewQuestions InterviewQuestion[]
+  scores             Score[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([scheduledAt])
+  @@map("interviews")
+}
+
+enum InterviewMode {
+  PRACTICE
+  MOCK
+  ASSESSMENT
+}
+
+enum InterviewStatus {
+  CREATED
+  IN_PROGRESS
+  PAUSED
+  COMPLETED
+  CANCELLED
+  EXPIRED
+}
+
+enum DifficultyLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+model Question {
+  id              String          @id @default(uuid())
+  text            String
+  category        String
+  subcategory     String?
+  difficultyLevel DifficultyLevel @map("difficulty_level")
+  expectedAnswer  String?         @map("expected_answer")
+  hints           String[]        @default([])
+  tags            String[]        @default([])
+  roleId          String?         @map("role_id")
+  isActive        Boolean         @default(true) @map("is_active")
+  timeLimitSeconds Int?           @map("time_limit_seconds")
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime        @updatedAt @map("updated_at")
+
+  interviewQuestions InterviewQuestion[]
+
+  @@index([category])
+  @@index([difficultyLevel])
+  @@index([roleId])
+  @@map("questions")
+}
+
+model InterviewQuestion {
+  id            String   @id @default(uuid())
+  interviewId   String   @map("interview_id")
+  questionId    String?  @map("question_id")
+  questionIndex Int      @map("question_index")
+  questionText  String?  @map("question_text")
+  answerText    String?  @map("answer_text")
+  answeredAt    DateTime? @map("answered_at")
+  isAnswered    Boolean  @default(false) @map("is_answered")
+  skipped       Boolean  @default(false)
+  timeTakenSeconds Int?  @map("time_taken_seconds")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  interview Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  question  Question? @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([interviewId, questionIndex])
+  @@index([interviewId])
+  @@index([questionId])
+  @@map("interview_questions")
+}
+
+// ─── Scoring ─────────────────────────────────────────────────────────
+
+model Score {
+  id            String   @id @default(uuid())
+  interviewId   String   @map("interview_id")
+  userId        String   @map("user_id")
+  overallScore  Float    @map("overall_score")
+  technicalScore Float?  @map("technical_score")
+  communicationScore Float? @map("communication_score")
+  problemSolvingScore Float? @map("problem_solving_score")
+  confidenceScore Float? @map("confidence_score")
+  breakdown     Json?
+  modelVersion  String?  @map("model_version")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  interview Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([interviewId])
+  @@index([userId])
+  @@map("scores")
+}
+
+// ─── GDPR & Privacy ─────────────────────────────────────────────────
+
+model GDPRConsent {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  consentType String   @map("consent_type")
+  granted     Boolean
+  ipAddress   String?  @map("ip_address")
+  userAgent   String?  @map("user_agent")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([consentType])
+  @@map("gdpr_consents")
+}
+
+
+
+// ─── ML Model Versioning ────────────────────────────────────────────
+
+model MLModelVersion {
+  id           String   @id @default(uuid())
+  modelName    String   @map("model_name")
+  version      String
+  description  String?
+  accuracy     Float?
+  isActive     Boolean  @default(false) @map("is_active")
+  artifactUrl  String?  @map("artifact_url")
+  config       Json?
+  deployedAt   DateTime? @map("deployed_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@unique([modelName, version])
+  @@index([modelName])
+  @@index([isActive])
+  @@map("ml_model_versions")
+}
+
+// ─── Transcript (was MongoDB) ───────────────────────────────────────
+
+model Transcript {
+  id           String   @id @default(uuid())
+  interviewId  String   @map("interview_id")
+  segments     Json     @default("[]")
+  fullText     String?  @map("full_text")
+  language     String   @default("en")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@index([interviewId])
+  @@map("transcripts")
+}
+
+// ─── Voice Analysis (was MongoDB) ───────────────────────────────────
+
+model VoiceAnalysis {
+  id             String   @id @default(uuid())
+  interviewId    String   @map("interview_id")
+  questionIndex  Int      @map("question_index")
+  metrics        Json
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@index([interviewId])
+  @@map("voice_analyses")
+}
+
+// ─── Camera Analysis (was MongoDB) ──────────────────────────────────
+
+model CameraAnalysis {
+  id             String   @id @default(uuid())
+  interviewId    String   @map("interview_id")
+  questionIndex  Int      @map("question_index")
+  frames         Json     @default("[]")
+  aggregated     Json?
+  consentId      String?  @map("consent_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@index([interviewId])
+  @@map("camera_analyses")
+}
+
+// ─── Evaluation (was MongoDB) ───────────────────────────────────────
+
+model Evaluation {
+  id              String   @id @default(uuid())
+  interviewId     String   @map("interview_id")
+  questionId      String?  @map("question_id")
+  questionIndex   Int      @map("question_index")
+  answerText      String?  @map("answer_text")
+  metrics         Json
+  shapExplanation Json?    @map("shap_explanation")
+  modelVersion    String?  @map("model_version")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@index([interviewId])
+  @@map("evaluations")
+}
+
+// ─── Report (was MongoDB) ───────────────────────────────────────────
+
+model Report {
+  id                       String   @id @default(uuid())
+  interviewId              String   @map("interview_id")
+  userId                   String   @map("user_id")
+  summary                  Json
+  questionFeedback         Json     @default("[]") @map("question_feedback")
+  voiceAnalysisSummary     Json?    @map("voice_analysis_summary")
+  practiceRecommendations  Json     @default("[]") @map("practice_recommendations")
+  pdfUrl                   String?  @map("pdf_url")
+  generatedAt              DateTime @default(now()) @map("generated_at")
+
+  @@index([interviewId])
+  @@index([userId])
+  @@map("reports")
+}
+
+// ─── Audit Log (was MongoDB) ────────────────────────────────────────
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?  @map("user_id")
+  action     String
+  resource   String
+  resourceId String?  @map("resource_id")
+  details    Json?
+  ipAddress  String?  @map("ip_address")
+  userAgent  String?  @map("user_agent")
+  timestamp  DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([timestamp])
+  @@map("audit_logs")
+}
+
+// ─── Interview Snapshot / Auto-save (was MongoDB) ───────────────────
+
+model InterviewSnapshot {
+  id                   String   @id @default(uuid())
+  interviewId          String   @map("interview_id")
+  sessionId            String?  @map("session_id")
+  state                Json
+  currentQuestionIndex Int      @map("current_question_index")
+  answers              Json     @default("[]")
+  timestamp            DateTime @default(now())
+
+  @@index([interviewId])
+  @@map("interview_snapshots")
+}
+

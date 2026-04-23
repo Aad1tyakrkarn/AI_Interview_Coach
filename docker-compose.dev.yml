@@ -1,0 +1,49 @@
+version: "3.9"
+
+# Development overrides — use with:
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  node-api:
+    build:
+      target: development
+    volumes:
+      - ./packages/node-api/src:/app/src:ro
+      - ./packages/node-api/package.json:/app/package.json:ro
+      - ./packages/node-api/tsconfig.json:/app/tsconfig.json:ro
+    environment:
+      NODE_ENV: development
+    command: npx tsx watch src/server.ts
+
+  python-ml:
+    volumes:
+      - ./packages/python-ml/app:/app/app:ro
+      - ./packages/python-ml/tests:/app/tests:ro
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      target: development
+    volumes:
+      - ./packages/frontend/src:/app/src:ro
+      - ./packages/frontend/public:/app/public:ro
+      - ./packages/frontend/index.html:/app/index.html:ro
+      - ./packages/frontend/vite.config.ts:/app/vite.config.ts:ro
+    environment:
+      NODE_ENV: development
+    command: npx vite --host 0.0.0.0 --port 5173
+
+  admin:
+    build:
+      target: development
+    volumes:
+      - ./packages/admin/src:/app/src:ro
+      - ./packages/admin/public:/app/public:ro
+      - ./packages/admin/index.html:/app/index.html:ro
+      - ./packages/admin/vite.config.ts:/app/vite.config.ts:ro
+    environment:
+      NODE_ENV: development
+    command: npx vite --host 0.0.0.0 --port 5174

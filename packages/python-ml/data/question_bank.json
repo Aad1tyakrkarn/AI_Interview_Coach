@@ -1,0 +1,250 @@
+[
+  {
+    "question": "Explain the virtual DOM in React and how reconciliation works",
+    "ideal_answer": "The virtual DOM is a lightweight JavaScript representation of the real DOM. When state changes, React creates a new virtual DOM tree and diffs it against the previous one using a reconciliation algorithm. It identifies the minimum number of changes needed and batches real DOM updates. React uses a fiber architecture for incremental rendering, allowing it to pause and resume work for better performance.",
+    "key_concepts": ["virtual DOM", "reconciliation", "diffing algorithm", "fiber architecture", "batched updates"],
+    "topic": "react",
+    "difficulty": "medium",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What are React hooks and why were they introduced?",
+    "ideal_answer": "Hooks are functions that let you use state and lifecycle features in functional components. They were introduced in React 16.8 to solve problems with class components: complex lifecycle logic, wrapper hell with HOCs and render props, and difficulty sharing stateful logic. Key hooks include useState for state, useEffect for side effects, useContext for context, useRef for mutable refs, useMemo and useCallback for performance optimization, and useReducer for complex state.",
+    "key_concepts": ["useState", "useEffect", "useContext", "useRef", "useMemo", "useCallback", "custom hooks", "rules of hooks"],
+    "topic": "react hooks",
+    "difficulty": "medium",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "How would you optimize the performance of a React application?",
+    "ideal_answer": "Key strategies: React.memo for preventing unnecessary re-renders, useMemo/useCallback for expensive computations, code splitting with React.lazy and Suspense, virtualization for long lists (react-window), proper key usage in lists, avoiding inline object/function creation in JSX, using the production build, implementing proper loading states, debouncing expensive operations, and profiling with React DevTools to identify bottlenecks.",
+    "key_concepts": ["React.memo", "useMemo", "useCallback", "code splitting", "lazy loading", "virtualization", "profiling", "re-render prevention"],
+    "topic": "react performance",
+    "difficulty": "hard",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "Explain the difference between CSS Flexbox and Grid. When would you use each?",
+    "ideal_answer": "Flexbox is one-dimensional — it handles layout in a single direction (row or column). Grid is two-dimensional — it handles both rows and columns simultaneously. Use Flexbox for: navigation bars, card rows, centering content, simple alignments. Use Grid for: complex page layouts, dashboard grids, magazine-style layouts, anything requiring precise row+column control. They can be combined — Grid for overall layout, Flexbox for component-level alignment.",
+    "key_concepts": ["one-dimensional vs two-dimensional", "flex-direction", "grid-template", "use cases", "combining both"],
+    "topic": "css layout",
+    "difficulty": "easy",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What is state management in React and when do you need an external state management library?",
+    "ideal_answer": "React has built-in state management via useState and useContext. External libraries (Redux, Zustand, MobX, Recoil) are needed when: state is shared across many unrelated components, you need time-travel debugging, state logic is complex (many actions/reducers), you need middleware for async operations, or the app has significant global state. For most apps, React Context + useReducer is sufficient. Redux is overkill for small apps but valuable for large-scale applications with complex data flows.",
+    "key_concepts": ["useState", "useContext", "Redux", "Zustand", "prop drilling", "global state", "when to use external library"],
+    "topic": "state management",
+    "difficulty": "medium",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "How does the JavaScript event loop work?",
+    "ideal_answer": "JavaScript is single-threaded with an event loop for async operations. The call stack executes synchronous code. When async operations (setTimeout, fetch, DOM events) complete, their callbacks go to the task queue (macrotasks) or microtask queue (Promises). The event loop checks: if call stack is empty, process all microtasks first, then one macrotask, then microtasks again. This is why Promise.then runs before setTimeout even if setTimeout is 0ms.",
+    "key_concepts": ["call stack", "task queue", "microtask queue", "single-threaded", "Promise vs setTimeout priority", "async/await"],
+    "topic": "javascript fundamentals",
+    "difficulty": "medium",
+    "roles": ["frontend", "fullstack", "backend"]
+  },
+  {
+    "question": "Explain closures in JavaScript with a practical example",
+    "ideal_answer": "A closure is a function that retains access to variables from its outer scope even after the outer function has returned. Practical uses: data privacy (module pattern), factory functions, event handlers with preserved state, memoization, and currying. Common pitfall: closures in loops capturing the same variable — solved with let (block scoping) or IIFE. Closures enable patterns like React hooks internally.",
+    "key_concepts": ["lexical scope", "data privacy", "factory functions", "loop closure pitfall", "module pattern"],
+    "topic": "javascript closures",
+    "difficulty": "medium",
+    "roles": ["frontend", "fullstack", "backend"]
+  },
+  {
+    "question": "Design a RESTful API for a blog platform. What endpoints would you create?",
+    "ideal_answer": "Resources: posts, users, comments, categories. Endpoints: GET /posts (list, with pagination, filtering, sorting), POST /posts (create), GET /posts/:id, PUT /posts/:id, DELETE /posts/:id, GET /posts/:id/comments, POST /posts/:id/comments. Authentication via JWT Bearer tokens. Use proper HTTP status codes (200, 201, 204, 400, 401, 404). Implement pagination with limit/offset or cursor-based. Version the API (/api/v1/). Use HATEOAS links for discoverability. Rate limiting and input validation.",
+    "key_concepts": ["REST principles", "HTTP methods", "status codes", "pagination", "authentication", "versioning", "rate limiting"],
+    "topic": "api design",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is the difference between SQL and NoSQL databases? When would you choose one over the other?",
+    "ideal_answer": "SQL databases (PostgreSQL, MySQL) are relational with fixed schemas, ACID transactions, and powerful joins. NoSQL (MongoDB, Redis, Cassandra) offers flexible schemas, horizontal scaling, and varied data models (document, key-value, graph, column-family). Choose SQL for: complex relationships, transactions (banking), structured data, reporting. Choose NoSQL for: flexible/evolving schemas, high write throughput, document-oriented data, caching, real-time analytics. Many production systems use both (polyglot persistence).",
+    "key_concepts": ["ACID", "CAP theorem", "horizontal scaling", "schema flexibility", "polyglot persistence", "use cases for each"],
+    "topic": "databases",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "Explain JWT authentication flow. What are the security considerations?",
+    "ideal_answer": "Flow: User logs in with credentials, server verifies and returns a signed JWT (access token + refresh token). Client sends JWT in Authorization header for subsequent requests. Server validates signature without DB lookup. Security considerations: use short expiry for access tokens (15min), store refresh tokens securely (httpOnly cookies, not localStorage), implement token rotation, use HTTPS only, validate token claims (iss, aud, exp), handle token revocation (blacklist or short-lived tokens), protect against XSS and CSRF.",
+    "key_concepts": ["access token", "refresh token", "token rotation", "httpOnly cookies", "XSS protection", "CSRF", "token expiry", "signature verification"],
+    "topic": "authentication",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "How would you design a rate limiter for an API?",
+    "ideal_answer": "Algorithms: Token bucket (allows bursts), sliding window (smooth), fixed window (simple). Implementation: Use Redis for distributed rate limiting with INCR + EXPIRE. Key by IP or user ID. Return 429 status with Retry-After header. Considerations: different limits per endpoint (login stricter), authenticated vs unauthenticated users, graceful degradation, distributed systems need shared state (Redis). Can also use middleware like express-rate-limit for simple cases.",
+    "key_concepts": ["token bucket", "sliding window", "Redis", "429 status", "Retry-After", "distributed rate limiting", "per-endpoint limits"],
+    "topic": "system design",
+    "difficulty": "hard",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is database indexing and how does it improve query performance?",
+    "ideal_answer": "An index is a data structure (usually B-tree or hash) that speeds up data retrieval at the cost of extra storage and slower writes. Like a book's index — lets you find data without scanning every row. Types: single-column, composite (multi-column, order matters), unique, partial, full-text. Create indexes on columns used in WHERE, JOIN, ORDER BY. Avoid over-indexing (slows writes). Use EXPLAIN ANALYZE to check if indexes are being used. Covering indexes include all needed columns to avoid table lookups.",
+    "key_concepts": ["B-tree", "composite index", "EXPLAIN ANALYZE", "covering index", "trade-offs", "when to index"],
+    "topic": "database optimization",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "Explain microservices architecture. What are the pros and cons?",
+    "ideal_answer": "Microservices decompose an application into small, independently deployable services. Each service owns its data and communicates via APIs or messaging. Pros: independent deployment, technology diversity, team autonomy, fault isolation, scalability per service. Cons: distributed system complexity, network latency, data consistency challenges, operational overhead (monitoring, tracing), service discovery, API versioning. Start monolithic, extract services when there's a clear boundary. Use API gateway, circuit breakers, and distributed tracing.",
+    "key_concepts": ["independent deployment", "service boundaries", "API gateway", "circuit breaker", "eventual consistency", "distributed tracing", "monolith vs microservices"],
+    "topic": "system design",
+    "difficulty": "hard",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "How does Docker work and why is it useful?",
+    "ideal_answer": "Docker packages applications with their dependencies into containers — lightweight, portable units that run consistently across environments. Uses Linux namespaces and cgroups for isolation. Key concepts: Dockerfile (build instructions), images (immutable templates), containers (running instances), volumes (persistent data), networks (container communication). Benefits: consistent dev/prod environments, fast startup, resource efficiency vs VMs, easy scaling, CI/CD integration. Docker Compose for multi-container apps.",
+    "key_concepts": ["containers vs VMs", "Dockerfile", "images", "volumes", "Docker Compose", "namespaces", "portability"],
+    "topic": "devops",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack", "devops"]
+  },
+  {
+    "question": "What is CI/CD and how would you set it up for a Node.js project?",
+    "ideal_answer": "CI (Continuous Integration) automatically tests code on every push. CD (Continuous Deployment/Delivery) automates deployment. For Node.js: use GitHub Actions or GitLab CI. Pipeline stages: install dependencies, lint, run unit tests, run integration tests, build, deploy. Add branch protection rules, require passing checks before merge. Use caching for node_modules. Run tests in parallel. Deploy to staging first, then production with approval gates. Monitor after deployment with rollback strategy.",
+    "key_concepts": ["continuous integration", "continuous deployment", "GitHub Actions", "pipeline stages", "branch protection", "caching", "rollback"],
+    "topic": "ci/cd",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack", "devops"]
+  },
+  {
+    "question": "Tell me about a time you had to debug a difficult production issue",
+    "ideal_answer": "Strong answers follow STAR format: Situation (production issue context), Task (your responsibility), Action (debugging steps — logs, monitoring, reproducing, root cause analysis), Result (resolution, prevention measures). Good candidates mention: systematic approach, using observability tools (logs, metrics, traces), communicating with stakeholders, post-mortem process, and preventive measures implemented afterward.",
+    "key_concepts": ["STAR format", "systematic debugging", "root cause analysis", "observability", "post-mortem", "communication"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "roles": ["frontend", "backend", "fullstack", "devops"]
+  },
+  {
+    "question": "How do you handle conflicts or disagreements with team members?",
+    "ideal_answer": "Good answers show: active listening, seeking to understand the other perspective, focusing on the problem not the person, using data/evidence to support positions, finding compromise, knowing when to escalate, and maintaining professional relationships. Example: disagreement on technical approach — proposed a spike/POC to evaluate both options objectively, presented findings to team, went with the better solution regardless of whose idea it was.",
+    "key_concepts": ["active listening", "data-driven decisions", "compromise", "professionalism", "POC/spike approach"],
+    "topic": "behavioral",
+    "difficulty": "easy",
+    "roles": ["frontend", "backend", "fullstack", "devops"]
+  },
+  {
+    "question": "Describe your approach to writing clean, maintainable code",
+    "ideal_answer": "Principles: meaningful naming, single responsibility, DRY but not premature abstraction, consistent formatting (linters/prettier), small focused functions, clear error handling, comprehensive but not excessive comments, type safety (TypeScript), thorough testing. Code review culture — both giving and receiving feedback. Refactoring continuously, not as a separate phase. Documentation for APIs and complex logic. Follow team conventions over personal preferences.",
+    "key_concepts": ["naming conventions", "single responsibility", "testing", "code review", "refactoring", "linting", "type safety"],
+    "topic": "best practices",
+    "difficulty": "easy",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "How would you implement caching in a web application?",
+    "ideal_answer": "Multiple levels: browser cache (Cache-Control headers, ETags), CDN for static assets, application-level cache (Redis/Memcached for API responses, session data, computed results), database query cache. Strategies: cache-aside (read: check cache first, miss → DB → cache), write-through, write-behind. Consider: TTL (time to live), cache invalidation (hardest problem), cache stampede prevention (mutex/lock), cache warming. Redis is most common — supports TTL, data structures, pub/sub for invalidation.",
+    "key_concepts": ["Redis", "cache-aside pattern", "TTL", "cache invalidation", "CDN", "Cache-Control headers", "cache stampede"],
+    "topic": "caching",
+    "difficulty": "hard",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is TypeScript and why would you use it over JavaScript?",
+    "ideal_answer": "TypeScript is a typed superset of JavaScript that compiles to plain JS. Benefits: catch type errors at compile time, better IDE support (autocompletion, refactoring), self-documenting code through types, interfaces for API contracts, enums, generics for reusable type-safe code. Trade-offs: learning curve, build step required, some third-party libraries may lack type definitions. Best for: large codebases, team projects, APIs with complex data shapes. Start gradually — can adopt incrementally with allowJs.",
+    "key_concepts": ["static typing", "interfaces", "generics", "compile-time errors", "gradual adoption", "type safety"],
+    "topic": "typescript",
+    "difficulty": "easy",
+    "roles": ["frontend", "fullstack", "backend"]
+  },
+  {
+    "question": "Explain the concept of middleware in Express.js",
+    "ideal_answer": "Middleware functions have access to req, res, and next(). They execute sequentially in the order registered. Types: application-level (app.use), router-level, error-handling (4 params), built-in (express.json, express.static), third-party (cors, helmet, morgan). Use cases: authentication, logging, request parsing, CORS, rate limiting, error handling. Error middleware has (err, req, res, next) signature. Middleware can modify req/res objects, end the cycle, or pass to next middleware.",
+    "key_concepts": ["req/res/next", "execution order", "error middleware", "authentication middleware", "app.use vs router.use"],
+    "topic": "express.js",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "How would you design a real-time notification system?",
+    "ideal_answer": "Architecture: WebSocket for persistent bidirectional connection (Socket.io for fallbacks), or Server-Sent Events for one-way push. Backend: notification service creates events, publishes to message queue (Redis pub/sub or RabbitMQ), WebSocket server subscribes and pushes to connected clients. Storage: store notifications in DB for history/unread count. Features: read/unread status, notification preferences, batching (don't spam), push notifications (FCM/APNs for mobile). Scale with Redis adapter for multi-server Socket.io.",
+    "key_concepts": ["WebSocket", "Socket.io", "Redis pub/sub", "Server-Sent Events", "message queue", "notification preferences", "scaling"],
+    "topic": "system design",
+    "difficulty": "hard",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is responsive design and how do you implement it?",
+    "ideal_answer": "Responsive design makes web pages render well on all devices. Techniques: mobile-first approach, CSS media queries for breakpoints, flexible grids (Flexbox/Grid with relative units), fluid images (max-width: 100%), CSS clamp() for fluid typography, viewport meta tag. Frameworks: Tailwind CSS utility classes (sm:, md:, lg:), Bootstrap grid. Testing: browser DevTools device emulation, real device testing. Consider: touch targets (44px min), performance on mobile (lazy loading), content prioritization per viewport.",
+    "key_concepts": ["mobile-first", "media queries", "breakpoints", "fluid layout", "viewport meta", "Tailwind responsive", "touch targets"],
+    "topic": "css responsive",
+    "difficulty": "easy",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "Explain the SOLID principles with examples",
+    "ideal_answer": "S: Single Responsibility — class should have one reason to change (UserService handles users, EmailService handles emails). O: Open/Closed — open for extension, closed for modification (use interfaces/inheritance). L: Liskov Substitution — subtypes must be substitutable for base types. I: Interface Segregation — many specific interfaces over one general (IPrinter vs IMultiFunctionDevice). D: Dependency Inversion — depend on abstractions not concretions (inject database interface, not PostgreSQL directly).",
+    "key_concepts": ["Single Responsibility", "Open/Closed", "Liskov Substitution", "Interface Segregation", "Dependency Inversion", "practical examples"],
+    "topic": "design principles",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "How do you handle error handling in a Node.js application?",
+    "ideal_answer": "Layers: validation errors (Zod/Joi at input), operational errors (DB failures, API timeouts — handle gracefully), programmer errors (bugs — crash and restart). Express: centralized error middleware, custom AppError class with status codes. Async: wrap route handlers in try/catch or use express-async-errors. Unhandled rejections: process.on('unhandledRejection'). Logging: structured logs (Winston/Pino) with context. Production: don't leak stack traces, return user-friendly messages, monitor error rates with alerting.",
+    "key_concepts": ["centralized error middleware", "custom error classes", "operational vs programmer errors", "structured logging", "unhandled rejection handling"],
+    "topic": "error handling",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is MongoDB aggregation pipeline and when would you use it?",
+    "ideal_answer": "Aggregation pipeline processes documents through stages: $match (filter), $group (aggregate), $project (reshape), $sort, $limit, $lookup (join), $unwind (flatten arrays), $addFields. Use for: reporting, analytics, data transformation, joining collections. More powerful than find() for complex queries. Performance: use $match early to reduce documents, create indexes on filtered fields. Alternative to bringing data to application layer for processing. Similar to SQL GROUP BY + JOIN + subqueries.",
+    "key_concepts": ["$match", "$group", "$project", "$lookup", "$unwind", "pipeline stages", "performance optimization"],
+    "topic": "mongodb",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "How would you implement authentication and authorization in a web app?",
+    "ideal_answer": "Authentication (who are you): password hashing (bcrypt, 12+ rounds), JWT or session-based auth, OAuth2/SSO for third-party login, 2FA with TOTP. Authorization (what can you do): RBAC (roles: admin, user, moderator), permission-based access, middleware that checks roles before route handlers. Security: rate limit login attempts, account lockout, secure password reset flow, HTTPS only, httpOnly cookies for tokens, CORS configuration, input sanitization, SQL injection prevention.",
+    "key_concepts": ["bcrypt", "JWT", "RBAC", "OAuth2", "2FA", "rate limiting", "httpOnly cookies", "CORS"],
+    "topic": "security",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What are WebSockets and how do they differ from HTTP?",
+    "ideal_answer": "HTTP is request-response: client asks, server responds, connection closes. WebSockets provide full-duplex persistent connections — both sides can send data anytime. Handshake starts as HTTP upgrade request, then switches to WS protocol. Use cases: real-time chat, live notifications, collaborative editing, gaming, live dashboards. Libraries: Socket.io (with fallbacks), ws (raw). Considerations: connection management, reconnection logic, load balancing (sticky sessions), scaling with Redis adapter.",
+    "key_concepts": ["full-duplex", "HTTP upgrade", "persistent connection", "Socket.io", "reconnection", "scaling", "use cases"],
+    "topic": "real-time",
+    "difficulty": "medium",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "Explain Git branching strategies. Which one would you recommend for a team?",
+    "ideal_answer": "Strategies: Git Flow (feature/develop/release/hotfix — good for versioned releases), GitHub Flow (feature branches + main — simple, good for CI/CD), Trunk-Based Development (short-lived branches, merge to main frequently — fastest for experienced teams). Recommendation depends on team size and release cycle. Most modern teams use GitHub Flow: create feature branch, make changes, open PR, code review, merge to main, auto-deploy. Branch protection rules, squash merging for clean history.",
+    "key_concepts": ["Git Flow", "GitHub Flow", "trunk-based", "feature branches", "pull requests", "branch protection", "squash merge"],
+    "topic": "version control",
+    "difficulty": "easy",
+    "roles": ["frontend", "backend", "fullstack", "devops"]
+  },
+  {
+    "question": "How would you approach testing a full-stack application?",
+    "ideal_answer": "Testing pyramid: Unit tests (most, fast, isolated — Jest, pytest), Integration tests (API endpoints with test DB, component integration), E2E tests (few, slow — Cypress, Playwright). Frontend: component tests with React Testing Library (test behavior not implementation), snapshot tests sparingly. Backend: test routes/controllers with supertest, mock external services. Coverage target: 80%+ for critical paths. TDD for complex business logic. CI pipeline runs all tests on every push.",
+    "key_concepts": ["testing pyramid", "unit tests", "integration tests", "E2E tests", "React Testing Library", "mocking", "CI pipeline", "TDD"],
+    "topic": "testing",
+    "difficulty": "medium",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is accessibility (a11y) in web development and how do you implement it?",
+    "ideal_answer": "Accessibility ensures web apps are usable by people with disabilities. WCAG guidelines (A, AA, AAA levels). Implementation: semantic HTML (nav, main, article, button vs div), ARIA attributes when semantic HTML isn't enough, keyboard navigation (focus management, tab order), color contrast (4.5:1 minimum), alt text for images, form labels, skip navigation links, screen reader testing (NVDA, VoiceOver). Tools: axe-core, Lighthouse, eslint-plugin-jsx-a11y. Test with keyboard-only navigation.",
+    "key_concepts": ["WCAG", "semantic HTML", "ARIA", "keyboard navigation", "color contrast", "screen readers", "testing tools"],
+    "topic": "accessibility",
+    "difficulty": "medium",
+    "roles": ["frontend", "fullstack"]
+  }
+]

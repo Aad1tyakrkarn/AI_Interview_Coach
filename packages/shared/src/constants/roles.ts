@@ -1,0 +1,71 @@
+import { Role } from '../types/user.types';
+
+export const USER_ROLES = [Role.USER] as const;
+
+export const ADMIN_ROLES = [Role.ADMIN, Role.SUPER_ADMIN] as const;
+
+export const ALL_ROLES = [Role.USER, Role.ADMIN, Role.SUPER_ADMIN] as const;
+
+export const PERMISSIONS = {
+  [Role.USER]: [
+    'interview:create',
+    'interview:read:own',
+    'interview:update:own',
+    'report:read:own',
+    'profile:read:own',
+    'profile:update:own',
+    'feedback:create',
+  ],
+  [Role.ADMIN]: [
+    'interview:create',
+    'interview:read:own',
+    'interview:read:all',
+    'interview:update:own',
+    'interview:update:all',
+    'report:read:own',
+    'report:read:all',
+    'profile:read:own',
+    'profile:read:all',
+    'profile:update:own',
+    'user:read:all',
+    'user:update:all',
+    'question:create',
+    'question:update',
+    'question:delete',
+    'feedback:create',
+    'feedback:read:all',
+    'feedback:review',
+    'ticket:read:all',
+    'ticket:update:all',
+    'analytics:read',
+  ],
+  [Role.SUPER_ADMIN]: [
+    'interview:create',
+    'interview:read:own',
+    'interview:read:all',
+    'interview:update:own',
+    'interview:update:all',
+    'interview:delete:all',
+    'report:read:own',
+    'report:read:all',
+    'profile:read:own',
+    'profile:read:all',
+    'profile:update:own',
+    'profile:update:all',
+    'user:create',
+    'user:read:all',
+    'user:update:all',
+    'user:delete:all',
+    'question:create',
+    'question:update',
+    'question:delete',
+    'feedback:create',
+    'feedback:read:all',
+    'feedback:review',
+    'ticket:read:all',
+    'ticket:update:all',
+    'analytics:read',
+    'system:manage',
+    'rbac:manage',
+  ],
+} as const;
