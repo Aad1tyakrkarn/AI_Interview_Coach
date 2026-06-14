@@ -5,6 +5,7 @@
     "key_concepts": ["virtual DOM", "reconciliation", "diffing algorithm", "fiber architecture", "batched updates"],
     "topic": "react",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack"]
   },
   {
@@ -13,6 +14,7 @@
     "key_concepts": ["useState", "useEffect", "useContext", "useRef", "useMemo", "useCallback", "custom hooks", "rules of hooks"],
     "topic": "react hooks",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack"]
   },
   {
@@ -21,230 +23,1636 @@
     "key_concepts": ["React.memo", "useMemo", "useCallback", "code splitting", "lazy loading", "virtualization", "profiling", "re-render prevention"],
     "topic": "react performance",
     "difficulty": "hard",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack"]
   },
   {
     "question": "Explain the difference between CSS Flexbox and Grid. When would you use each?",
-    "ideal_answer": "Flexbox is one-dimensional — it handles layout in a single direction (row or column). Grid is two-dimensional — it handles both rows and columns simultaneously. Use Flexbox for: navigation bars, card rows, centering content, simple alignments. Use Grid for: complex page layouts, dashboard grids, magazine-style layouts, anything requiring precise row+column control. They can be combined — Grid for overall layout, Flexbox for component-level alignment.",
+    "ideal_answer": "Flexbox is one-dimensional, handling layout in a single direction (row or column). Grid is two-dimensional, handling both rows and columns simultaneously. Use Flexbox for navigation bars, card rows, centering content, and simple alignments. Use Grid for complex page layouts, dashboard grids, magazine-style layouts, anything requiring precise row+column control. They can be combined — Grid for overall layout, Flexbox for component-level alignment.",
     "key_concepts": ["one-dimensional vs two-dimensional", "flex-direction", "grid-template", "use cases", "combining both"],
     "topic": "css layout",
     "difficulty": "easy",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack"]
   },
   {
     "question": "What is state management in React and when do you need an external state management library?",
-    "ideal_answer": "React has built-in state management via useState and useContext. External libraries (Redux, Zustand, MobX, Recoil) are needed when: state is shared across many unrelated components, you need time-travel debugging, state logic is complex (many actions/reducers), you need middleware for async operations, or the app has significant global state. For most apps, React Context + useReducer is sufficient. Redux is overkill for small apps but valuable for large-scale applications with complex data flows.",
+    "ideal_answer": "React has built-in state management via useState and useContext. External libraries (Redux, Zustand, MobX, Recoil) are needed when state is shared across many unrelated components, you need time-travel debugging, state logic is complex with many actions and reducers, you need middleware for async operations, or the app has significant global state. For most apps, React Context + useReducer is sufficient. Redux is overkill for small apps but valuable for large-scale applications with complex data flows.",
     "key_concepts": ["useState", "useContext", "Redux", "Zustand", "prop drilling", "global state", "when to use external library"],
     "topic": "state management",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack"]
   },
   {
     "question": "How does the JavaScript event loop work?",
-    "ideal_answer": "JavaScript is single-threaded with an event loop for async operations. The call stack executes synchronous code. When async operations (setTimeout, fetch, DOM events) complete, their callbacks go to the task queue (macrotasks) or microtask queue (Promises). The event loop checks: if call stack is empty, process all microtasks first, then one macrotask, then microtasks again. This is why Promise.then runs before setTimeout even if setTimeout is 0ms.",
+    "ideal_answer": "JavaScript is single-threaded with an event loop for async operations. The call stack executes synchronous code. When async operations like setTimeout, fetch, and DOM events complete, their callbacks go to the task queue (macrotasks) or microtask queue (Promises). The event loop checks: if the call stack is empty, process all microtasks first, then one macrotask, then microtasks again. This is why Promise.then runs before setTimeout even if setTimeout is 0ms.",
     "key_concepts": ["call stack", "task queue", "microtask queue", "single-threaded", "Promise vs setTimeout priority", "async/await"],
     "topic": "javascript fundamentals",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack", "backend"]
   },
   {
     "question": "Explain closures in JavaScript with a practical example",
-    "ideal_answer": "A closure is a function that retains access to variables from its outer scope even after the outer function has returned. Practical uses: data privacy (module pattern), factory functions, event handlers with preserved state, memoization, and currying. Common pitfall: closures in loops capturing the same variable — solved with let (block scoping) or IIFE. Closures enable patterns like React hooks internally.",
+    "ideal_answer": "A closure is a function that retains access to variables from its outer scope even after the outer function has returned. Practical uses include data privacy through the module pattern, factory functions, event handlers with preserved state, memoization, and currying. A common pitfall is closures in loops capturing the same variable, solved with let block scoping or IIFE. Closures enable patterns like React hooks internally.",
     "key_concepts": ["lexical scope", "data privacy", "factory functions", "loop closure pitfall", "module pattern"],
     "topic": "javascript closures",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack", "backend"]
   },
   {
     "question": "Design a RESTful API for a blog platform. What endpoints would you create?",
-    "ideal_answer": "Resources: posts, users, comments, categories. Endpoints: GET /posts (list, with pagination, filtering, sorting), POST /posts (create), GET /posts/:id, PUT /posts/:id, DELETE /posts/:id, GET /posts/:id/comments, POST /posts/:id/comments. Authentication via JWT Bearer tokens. Use proper HTTP status codes (200, 201, 204, 400, 401, 404). Implement pagination with limit/offset or cursor-based. Version the API (/api/v1/). Use HATEOAS links for discoverability. Rate limiting and input validation.",
+    "ideal_answer": "Main resources are posts, users, comments, and categories. Endpoints include GET /posts (list with pagination, filtering, sorting), POST /posts (create), GET /posts/:id, PUT /posts/:id, DELETE /posts/:id, GET /posts/:id/comments, and POST /posts/:id/comments. Use JWT Bearer tokens for authentication and proper HTTP status codes (200, 201, 204, 400, 401, 404). Implement pagination with limit/offset or cursor-based approach. Version the API at /api/v1/. Include rate limiting and input validation.",
     "key_concepts": ["REST principles", "HTTP methods", "status codes", "pagination", "authentication", "versioning", "rate limiting"],
     "topic": "api design",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "What is the difference between SQL and NoSQL databases? When would you choose one over the other?",
-    "ideal_answer": "SQL databases (PostgreSQL, MySQL) are relational with fixed schemas, ACID transactions, and powerful joins. NoSQL (MongoDB, Redis, Cassandra) offers flexible schemas, horizontal scaling, and varied data models (document, key-value, graph, column-family). Choose SQL for: complex relationships, transactions (banking), structured data, reporting. Choose NoSQL for: flexible/evolving schemas, high write throughput, document-oriented data, caching, real-time analytics. Many production systems use both (polyglot persistence).",
+    "ideal_answer": "SQL databases like PostgreSQL and MySQL are relational with fixed schemas, ACID transactions, and powerful joins. NoSQL databases like MongoDB, Redis, and Cassandra offer flexible schemas, horizontal scaling, and varied data models including document, key-value, graph, and column-family. Choose SQL for complex relationships, transactions in banking, structured data, and reporting. Choose NoSQL for flexible schemas, high write throughput, document-oriented data, caching, and real-time analytics. Many production systems use both in polyglot persistence.",
     "key_concepts": ["ACID", "CAP theorem", "horizontal scaling", "schema flexibility", "polyglot persistence", "use cases for each"],
     "topic": "databases",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "Explain JWT authentication flow. What are the security considerations?",
-    "ideal_answer": "Flow: User logs in with credentials, server verifies and returns a signed JWT (access token + refresh token). Client sends JWT in Authorization header for subsequent requests. Server validates signature without DB lookup. Security considerations: use short expiry for access tokens (15min), store refresh tokens securely (httpOnly cookies, not localStorage), implement token rotation, use HTTPS only, validate token claims (iss, aud, exp), handle token revocation (blacklist or short-lived tokens), protect against XSS and CSRF.",
+    "ideal_answer": "The flow involves the user logging in with credentials, the server verifying and returning a signed JWT consisting of access token and refresh token. The client sends the JWT in the Authorization header for subsequent requests. The server validates the signature without a DB lookup. Security considerations include using short expiry for access tokens (15 minutes), storing refresh tokens securely in httpOnly cookies (not localStorage), implementing token rotation, using HTTPS only, validating token claims (iss, aud, exp), handling token revocation through blacklist or short-lived tokens, and protecting against XSS and CSRF.",
     "key_concepts": ["access token", "refresh token", "token rotation", "httpOnly cookies", "XSS protection", "CSRF", "token expiry", "signature verification"],
     "topic": "authentication",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "How would you design a rate limiter for an API?",
-    "ideal_answer": "Algorithms: Token bucket (allows bursts), sliding window (smooth), fixed window (simple). Implementation: Use Redis for distributed rate limiting with INCR + EXPIRE. Key by IP or user ID. Return 429 status with Retry-After header. Considerations: different limits per endpoint (login stricter), authenticated vs unauthenticated users, graceful degradation, distributed systems need shared state (Redis). Can also use middleware like express-rate-limit for simple cases.",
+    "ideal_answer": "Common algorithms include token bucket which allows bursts, sliding window for smooth limiting, and fixed window for simplicity. Implementation typically uses Redis for distributed rate limiting with INCR and EXPIRE commands. Key by IP address or user ID. Return 429 status with a Retry-After header. Considerations include different limits per endpoint (login should be stricter), authenticated vs unauthenticated users, graceful degradation, and shared state across distributed systems via Redis. Middleware like express-rate-limit handles simple cases.",
     "key_concepts": ["token bucket", "sliding window", "Redis", "429 status", "Retry-After", "distributed rate limiting", "per-endpoint limits"],
     "topic": "system design",
     "difficulty": "hard",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "What is database indexing and how does it improve query performance?",
-    "ideal_answer": "An index is a data structure (usually B-tree or hash) that speeds up data retrieval at the cost of extra storage and slower writes. Like a book's index — lets you find data without scanning every row. Types: single-column, composite (multi-column, order matters), unique, partial, full-text. Create indexes on columns used in WHERE, JOIN, ORDER BY. Avoid over-indexing (slows writes). Use EXPLAIN ANALYZE to check if indexes are being used. Covering indexes include all needed columns to avoid table lookups.",
+    "ideal_answer": "An index is a data structure usually a B-tree or hash that speeds up data retrieval at the cost of extra storage and slower writes. It works like a book's index, letting you find data without scanning every row. Types include single-column, composite (multi-column where order matters), unique, partial, and full-text. Create indexes on columns used in WHERE, JOIN, and ORDER BY clauses. Avoid over-indexing as it slows writes. Use EXPLAIN ANALYZE to check if indexes are being used. Covering indexes include all needed columns to avoid table lookups.",
     "key_concepts": ["B-tree", "composite index", "EXPLAIN ANALYZE", "covering index", "trade-offs", "when to index"],
     "topic": "database optimization",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "Explain microservices architecture. What are the pros and cons?",
-    "ideal_answer": "Microservices decompose an application into small, independently deployable services. Each service owns its data and communicates via APIs or messaging. Pros: independent deployment, technology diversity, team autonomy, fault isolation, scalability per service. Cons: distributed system complexity, network latency, data consistency challenges, operational overhead (monitoring, tracing), service discovery, API versioning. Start monolithic, extract services when there's a clear boundary. Use API gateway, circuit breakers, and distributed tracing.",
+    "ideal_answer": "Microservices decompose an application into small, independently deployable services. Each service owns its data and communicates via APIs or messaging. Pros include independent deployment, technology diversity, team autonomy, fault isolation, and per-service scalability. Cons include distributed system complexity, network latency, data consistency challenges, operational overhead from monitoring and tracing, service discovery needs, and API versioning. Best practice is to start monolithic and extract services when there's a clear boundary. Use API gateway, circuit breakers, and distributed tracing.",
     "key_concepts": ["independent deployment", "service boundaries", "API gateway", "circuit breaker", "eventual consistency", "distributed tracing", "monolith vs microservices"],
     "topic": "system design",
     "difficulty": "hard",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "How does Docker work and why is it useful?",
-    "ideal_answer": "Docker packages applications with their dependencies into containers — lightweight, portable units that run consistently across environments. Uses Linux namespaces and cgroups for isolation. Key concepts: Dockerfile (build instructions), images (immutable templates), containers (running instances), volumes (persistent data), networks (container communication). Benefits: consistent dev/prod environments, fast startup, resource efficiency vs VMs, easy scaling, CI/CD integration. Docker Compose for multi-container apps.",
+    "ideal_answer": "Docker packages applications with their dependencies into containers, which are lightweight portable units that run consistently across environments. It uses Linux namespaces and cgroups for isolation. Key concepts include the Dockerfile for build instructions, images as immutable templates, containers as running instances, volumes for persistent data, and networks for container communication. Benefits include consistent dev/prod environments, fast startup, resource efficiency versus VMs, easy scaling, and CI/CD integration. Docker Compose is used for multi-container apps.",
     "key_concepts": ["containers vs VMs", "Dockerfile", "images", "volumes", "Docker Compose", "namespaces", "portability"],
     "topic": "devops",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack", "devops"]
   },
   {
     "question": "What is CI/CD and how would you set it up for a Node.js project?",
-    "ideal_answer": "CI (Continuous Integration) automatically tests code on every push. CD (Continuous Deployment/Delivery) automates deployment. For Node.js: use GitHub Actions or GitLab CI. Pipeline stages: install dependencies, lint, run unit tests, run integration tests, build, deploy. Add branch protection rules, require passing checks before merge. Use caching for node_modules. Run tests in parallel. Deploy to staging first, then production with approval gates. Monitor after deployment with rollback strategy.",
+    "ideal_answer": "CI (Continuous Integration) automatically tests code on every push. CD (Continuous Deployment/Delivery) automates deployment. For Node.js, use GitHub Actions or GitLab CI. Pipeline stages include installing dependencies, linting, running unit tests, running integration tests, building, and deploying. Add branch protection rules requiring passing checks before merge. Use caching for node_modules and run tests in parallel. Deploy to staging first, then production with approval gates. Monitor after deployment with a rollback strategy.",
     "key_concepts": ["continuous integration", "continuous deployment", "GitHub Actions", "pipeline stages", "branch protection", "caching", "rollback"],
     "topic": "ci/cd",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack", "devops"]
   },
   {
     "question": "Tell me about a time you had to debug a difficult production issue",
-    "ideal_answer": "Strong answers follow STAR format: Situation (production issue context), Task (your responsibility), Action (debugging steps — logs, monitoring, reproducing, root cause analysis), Result (resolution, prevention measures). Good candidates mention: systematic approach, using observability tools (logs, metrics, traces), communicating with stakeholders, post-mortem process, and preventive measures implemented afterward.",
+    "ideal_answer": "Strong answers follow STAR format: Situation (production issue context), Task (your responsibility), Action (debugging steps including logs, monitoring, reproducing, root cause analysis), Result (resolution and prevention measures). Good candidates mention a systematic approach, using observability tools like logs, metrics, and traces, communicating with stakeholders, conducting a post-mortem process, and implementing preventive measures afterward.",
     "key_concepts": ["STAR format", "systematic debugging", "root cause analysis", "observability", "post-mortem", "communication"],
     "topic": "behavioral",
     "difficulty": "medium",
+    "domain": "behavioral",
     "roles": ["frontend", "backend", "fullstack", "devops"]
   },
   {
     "question": "How do you handle conflicts or disagreements with team members?",
-    "ideal_answer": "Good answers show: active listening, seeking to understand the other perspective, focusing on the problem not the person, using data/evidence to support positions, finding compromise, knowing when to escalate, and maintaining professional relationships. Example: disagreement on technical approach — proposed a spike/POC to evaluate both options objectively, presented findings to team, went with the better solution regardless of whose idea it was.",
+    "ideal_answer": "Good answers demonstrate active listening, seeking to understand the other perspective, focusing on the problem not the person, using data and evidence to support positions, finding compromise, knowing when to escalate, and maintaining professional relationships. For example, when there was a disagreement on technical approach, I proposed a spike or POC to evaluate both options objectively, presented findings to the team, and went with the better solution regardless of whose idea it was.",
     "key_concepts": ["active listening", "data-driven decisions", "compromise", "professionalism", "POC/spike approach"],
     "topic": "behavioral",
     "difficulty": "easy",
+    "domain": "behavioral",
     "roles": ["frontend", "backend", "fullstack", "devops"]
   },
   {
     "question": "Describe your approach to writing clean, maintainable code",
-    "ideal_answer": "Principles: meaningful naming, single responsibility, DRY but not premature abstraction, consistent formatting (linters/prettier), small focused functions, clear error handling, comprehensive but not excessive comments, type safety (TypeScript), thorough testing. Code review culture — both giving and receiving feedback. Refactoring continuously, not as a separate phase. Documentation for APIs and complex logic. Follow team conventions over personal preferences.",
+    "ideal_answer": "Key principles include meaningful naming, single responsibility, being DRY but avoiding premature abstraction, consistent formatting via linters and prettier, small focused functions, clear error handling, comprehensive but not excessive comments, type safety with TypeScript, and thorough testing. I value code review culture for both giving and receiving feedback. I refactor continuously rather than as a separate phase. I document APIs and complex logic and follow team conventions over personal preferences.",
     "key_concepts": ["naming conventions", "single responsibility", "testing", "code review", "refactoring", "linting", "type safety"],
     "topic": "best practices",
     "difficulty": "easy",
+    "domain": "software_engineering",
     "roles": ["frontend", "backend", "fullstack"]
   },
   {
     "question": "How would you implement caching in a web application?",
-    "ideal_answer": "Multiple levels: browser cache (Cache-Control headers, ETags), CDN for static assets, application-level cache (Redis/Memcached for API responses, session data, computed results), database query cache. Strategies: cache-aside (read: check cache first, miss → DB → cache), write-through, write-behind. Consider: TTL (time to live), cache invalidation (hardest problem), cache stampede prevention (mutex/lock), cache warming. Redis is most common — supports TTL, data structures, pub/sub for invalidation.",
+    "ideal_answer": "Caching operates at multiple levels: browser cache via Cache-Control headers and ETags, CDN for static assets, application-level cache using Redis or Memcached for API responses, session data, and computed results, and database query cache. Common strategies include cache-aside (read: check cache first, miss goes to DB then cache), write-through, and write-behind. Important considerations: TTL (time to live), cache invalidation which is the hardest problem, cache stampede prevention via mutex or lock, and cache warming. Redis is most common, supporting TTL, data structures, and pub/sub for invalidation.",
     "key_concepts": ["Redis", "cache-aside pattern", "TTL", "cache invalidation", "CDN", "Cache-Control headers", "cache stampede"],
     "topic": "caching",
     "difficulty": "hard",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "What is TypeScript and why would you use it over JavaScript?",
-    "ideal_answer": "TypeScript is a typed superset of JavaScript that compiles to plain JS. Benefits: catch type errors at compile time, better IDE support (autocompletion, refactoring), self-documenting code through types, interfaces for API contracts, enums, generics for reusable type-safe code. Trade-offs: learning curve, build step required, some third-party libraries may lack type definitions. Best for: large codebases, team projects, APIs with complex data shapes. Start gradually — can adopt incrementally with allowJs.",
+    "ideal_answer": "TypeScript is a typed superset of JavaScript that compiles to plain JS. Benefits include catching type errors at compile time, better IDE support with autocompletion and refactoring, self-documenting code through types, interfaces for API contracts, enums, and generics for reusable type-safe code. Trade-offs include a learning curve, required build step, and some third-party libraries may lack type definitions. It's best for large codebases, team projects, and APIs with complex data shapes. You can start gradually and adopt incrementally with allowJs.",
     "key_concepts": ["static typing", "interfaces", "generics", "compile-time errors", "gradual adoption", "type safety"],
     "topic": "typescript",
     "difficulty": "easy",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack", "backend"]
   },
   {
     "question": "Explain the concept of middleware in Express.js",
-    "ideal_answer": "Middleware functions have access to req, res, and next(). They execute sequentially in the order registered. Types: application-level (app.use), router-level, error-handling (4 params), built-in (express.json, express.static), third-party (cors, helmet, morgan). Use cases: authentication, logging, request parsing, CORS, rate limiting, error handling. Error middleware has (err, req, res, next) signature. Middleware can modify req/res objects, end the cycle, or pass to next middleware.",
+    "ideal_answer": "Middleware functions have access to req, res, and next() and execute sequentially in the order registered. Types include application-level (app.use), router-level, error-handling (4 parameters), built-in like express.json and express.static, and third-party like cors, helmet, and morgan. Common use cases are authentication, logging, request parsing, CORS, rate limiting, and error handling. Error middleware has the (err, req, res, next) signature. Middleware can modify req/res objects, end the cycle, or pass to the next middleware.",
     "key_concepts": ["req/res/next", "execution order", "error middleware", "authentication middleware", "app.use vs router.use"],
     "topic": "express.js",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "How would you design a real-time notification system?",
-    "ideal_answer": "Architecture: WebSocket for persistent bidirectional connection (Socket.io for fallbacks), or Server-Sent Events for one-way push. Backend: notification service creates events, publishes to message queue (Redis pub/sub or RabbitMQ), WebSocket server subscribes and pushes to connected clients. Storage: store notifications in DB for history/unread count. Features: read/unread status, notification preferences, batching (don't spam), push notifications (FCM/APNs for mobile). Scale with Redis adapter for multi-server Socket.io.",
+    "ideal_answer": "The architecture uses WebSocket for persistent bidirectional connection (Socket.io for fallbacks) or Server-Sent Events for one-way push. Backend flow: a notification service creates events, publishes to a message queue (Redis pub/sub or RabbitMQ), and a WebSocket server subscribes and pushes to connected clients. Storage: notifications are persisted in DB for history and unread count. Features include read/unread status, notification preferences, batching to avoid spam, and push notifications via FCM/APNs for mobile. Scale with Redis adapter for multi-server Socket.io.",
     "key_concepts": ["WebSocket", "Socket.io", "Redis pub/sub", "Server-Sent Events", "message queue", "notification preferences", "scaling"],
     "topic": "system design",
     "difficulty": "hard",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "What is responsive design and how do you implement it?",
-    "ideal_answer": "Responsive design makes web pages render well on all devices. Techniques: mobile-first approach, CSS media queries for breakpoints, flexible grids (Flexbox/Grid with relative units), fluid images (max-width: 100%), CSS clamp() for fluid typography, viewport meta tag. Frameworks: Tailwind CSS utility classes (sm:, md:, lg:), Bootstrap grid. Testing: browser DevTools device emulation, real device testing. Consider: touch targets (44px min), performance on mobile (lazy loading), content prioritization per viewport.",
+    "ideal_answer": "Responsive design makes web pages render well on all devices. Key techniques include a mobile-first approach, CSS media queries for breakpoints, flexible grids using Flexbox or Grid with relative units, fluid images with max-width 100%, CSS clamp() for fluid typography, and the viewport meta tag. Frameworks include Tailwind CSS utility classes (sm:, md:, lg:) and Bootstrap grid. Testing uses browser DevTools device emulation and real device testing. Consider touch targets (44px minimum), performance on mobile via lazy loading, and content prioritization per viewport.",
     "key_concepts": ["mobile-first", "media queries", "breakpoints", "fluid layout", "viewport meta", "Tailwind responsive", "touch targets"],
     "topic": "css responsive",
     "difficulty": "easy",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack"]
   },
   {
     "question": "Explain the SOLID principles with examples",
-    "ideal_answer": "S: Single Responsibility — class should have one reason to change (UserService handles users, EmailService handles emails). O: Open/Closed — open for extension, closed for modification (use interfaces/inheritance). L: Liskov Substitution — subtypes must be substitutable for base types. I: Interface Segregation — many specific interfaces over one general (IPrinter vs IMultiFunctionDevice). D: Dependency Inversion — depend on abstractions not concretions (inject database interface, not PostgreSQL directly).",
+    "ideal_answer": "S: Single Responsibility — a class should have one reason to change (UserService handles users, EmailService handles emails). O: Open/Closed — open for extension, closed for modification, using interfaces or inheritance. L: Liskov Substitution — subtypes must be substitutable for base types. I: Interface Segregation — many specific interfaces over one general (IPrinter vs IMultiFunctionDevice). D: Dependency Inversion — depend on abstractions not concretions (inject database interface, not PostgreSQL directly).",
     "key_concepts": ["Single Responsibility", "Open/Closed", "Liskov Substitution", "Interface Segregation", "Dependency Inversion", "practical examples"],
     "topic": "design principles",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "How do you handle error handling in a Node.js application?",
-    "ideal_answer": "Layers: validation errors (Zod/Joi at input), operational errors (DB failures, API timeouts — handle gracefully), programmer errors (bugs — crash and restart). Express: centralized error middleware, custom AppError class with status codes. Async: wrap route handlers in try/catch or use express-async-errors. Unhandled rejections: process.on('unhandledRejection'). Logging: structured logs (Winston/Pino) with context. Production: don't leak stack traces, return user-friendly messages, monitor error rates with alerting.",
+    "ideal_answer": "Error handling operates in layers: validation errors using Zod or Joi at input, operational errors like DB failures and API timeouts handled gracefully, and programmer errors which are bugs that should crash and restart. Express uses centralized error middleware and a custom AppError class with status codes. For async code, wrap route handlers in try/catch or use express-async-errors. Handle unhandled rejections via process.on('unhandledRejection'). Use structured logging with Winston or Pino with context. In production, don't leak stack traces, return user-friendly messages, and monitor error rates with alerting.",
     "key_concepts": ["centralized error middleware", "custom error classes", "operational vs programmer errors", "structured logging", "unhandled rejection handling"],
     "topic": "error handling",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "What is MongoDB aggregation pipeline and when would you use it?",
-    "ideal_answer": "Aggregation pipeline processes documents through stages: $match (filter), $group (aggregate), $project (reshape), $sort, $limit, $lookup (join), $unwind (flatten arrays), $addFields. Use for: reporting, analytics, data transformation, joining collections. More powerful than find() for complex queries. Performance: use $match early to reduce documents, create indexes on filtered fields. Alternative to bringing data to application layer for processing. Similar to SQL GROUP BY + JOIN + subqueries.",
+    "ideal_answer": "Aggregation pipeline processes documents through stages: $match (filter), $group (aggregate), $project (reshape), $sort, $limit, $lookup (join), $unwind (flatten arrays), and $addFields. Use it for reporting, analytics, data transformation, and joining collections. It's more powerful than find() for complex queries. For performance, use $match early to reduce documents and create indexes on filtered fields. It's an alternative to bringing data to the application layer for processing, similar to SQL GROUP BY combined with JOIN and subqueries.",
     "key_concepts": ["$match", "$group", "$project", "$lookup", "$unwind", "pipeline stages", "performance optimization"],
     "topic": "mongodb",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "How would you implement authentication and authorization in a web app?",
-    "ideal_answer": "Authentication (who are you): password hashing (bcrypt, 12+ rounds), JWT or session-based auth, OAuth2/SSO for third-party login, 2FA with TOTP. Authorization (what can you do): RBAC (roles: admin, user, moderator), permission-based access, middleware that checks roles before route handlers. Security: rate limit login attempts, account lockout, secure password reset flow, HTTPS only, httpOnly cookies for tokens, CORS configuration, input sanitization, SQL injection prevention.",
+    "ideal_answer": "Authentication (who are you): password hashing with bcrypt at 12+ rounds, JWT or session-based auth, OAuth2/SSO for third-party login, and 2FA with TOTP. Authorization (what can you do): RBAC with roles like admin, user, moderator, permission-based access, and middleware that checks roles before route handlers. Security measures include rate-limiting login attempts, account lockout, secure password reset flow, HTTPS only, httpOnly cookies for tokens, CORS configuration, input sanitization, and SQL injection prevention.",
     "key_concepts": ["bcrypt", "JWT", "RBAC", "OAuth2", "2FA", "rate limiting", "httpOnly cookies", "CORS"],
     "topic": "security",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "What are WebSockets and how do they differ from HTTP?",
-    "ideal_answer": "HTTP is request-response: client asks, server responds, connection closes. WebSockets provide full-duplex persistent connections — both sides can send data anytime. Handshake starts as HTTP upgrade request, then switches to WS protocol. Use cases: real-time chat, live notifications, collaborative editing, gaming, live dashboards. Libraries: Socket.io (with fallbacks), ws (raw). Considerations: connection management, reconnection logic, load balancing (sticky sessions), scaling with Redis adapter.",
+    "ideal_answer": "HTTP is request-response: client asks, server responds, and the connection closes. WebSockets provide full-duplex persistent connections where both sides can send data anytime. The handshake starts as an HTTP upgrade request then switches to the WS protocol. Use cases include real-time chat, live notifications, collaborative editing, gaming, and live dashboards. Libraries include Socket.io with fallbacks and raw ws. Considerations: connection management, reconnection logic, load balancing with sticky sessions, and scaling with Redis adapter.",
     "key_concepts": ["full-duplex", "HTTP upgrade", "persistent connection", "Socket.io", "reconnection", "scaling", "use cases"],
     "topic": "real-time",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["backend", "fullstack"]
   },
   {
     "question": "Explain Git branching strategies. Which one would you recommend for a team?",
-    "ideal_answer": "Strategies: Git Flow (feature/develop/release/hotfix — good for versioned releases), GitHub Flow (feature branches + main — simple, good for CI/CD), Trunk-Based Development (short-lived branches, merge to main frequently — fastest for experienced teams). Recommendation depends on team size and release cycle. Most modern teams use GitHub Flow: create feature branch, make changes, open PR, code review, merge to main, auto-deploy. Branch protection rules, squash merging for clean history.",
+    "ideal_answer": "Common strategies include Git Flow with feature/develop/release/hotfix branches, good for versioned releases; GitHub Flow with feature branches plus main, simple and good for CI/CD; and Trunk-Based Development with short-lived branches merged to main frequently, fastest for experienced teams. The recommendation depends on team size and release cycle. Most modern teams use GitHub Flow: create feature branch, make changes, open PR, do code review, merge to main, auto-deploy. Add branch protection rules and use squash merging for clean history.",
     "key_concepts": ["Git Flow", "GitHub Flow", "trunk-based", "feature branches", "pull requests", "branch protection", "squash merge"],
     "topic": "version control",
     "difficulty": "easy",
+    "domain": "software_engineering",
     "roles": ["frontend", "backend", "fullstack", "devops"]
   },
   {
     "question": "How would you approach testing a full-stack application?",
-    "ideal_answer": "Testing pyramid: Unit tests (most, fast, isolated — Jest, pytest), Integration tests (API endpoints with test DB, component integration), E2E tests (few, slow — Cypress, Playwright). Frontend: component tests with React Testing Library (test behavior not implementation), snapshot tests sparingly. Backend: test routes/controllers with supertest, mock external services. Coverage target: 80%+ for critical paths. TDD for complex business logic. CI pipeline runs all tests on every push.",
+    "ideal_answer": "Follow the testing pyramid: many unit tests that are fast and isolated using Jest or pytest, fewer integration tests for API endpoints with test DB and component integration, and few slow E2E tests using Cypress or Playwright. Frontend: component tests with React Testing Library testing behavior not implementation, and snapshot tests sparingly. Backend: test routes/controllers with supertest and mock external services. Target 80%+ coverage for critical paths. Use TDD for complex business logic. CI pipeline should run all tests on every push.",
     "key_concepts": ["testing pyramid", "unit tests", "integration tests", "E2E tests", "React Testing Library", "mocking", "CI pipeline", "TDD"],
     "topic": "testing",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["frontend", "backend", "fullstack"]
   },
   {
     "question": "What is accessibility (a11y) in web development and how do you implement it?",
-    "ideal_answer": "Accessibility ensures web apps are usable by people with disabilities. WCAG guidelines (A, AA, AAA levels). Implementation: semantic HTML (nav, main, article, button vs div), ARIA attributes when semantic HTML isn't enough, keyboard navigation (focus management, tab order), color contrast (4.5:1 minimum), alt text for images, form labels, skip navigation links, screen reader testing (NVDA, VoiceOver). Tools: axe-core, Lighthouse, eslint-plugin-jsx-a11y. Test with keyboard-only navigation.",
+    "ideal_answer": "Accessibility ensures web apps are usable by people with disabilities, following WCAG guidelines at A, AA, or AAA levels. Implementation includes semantic HTML (nav, main, article, button vs div), ARIA attributes when semantic HTML isn't enough, keyboard navigation with focus management and tab order, color contrast at 4.5:1 minimum, alt text for images, form labels, skip navigation links, and screen reader testing with NVDA or VoiceOver. Tools include axe-core, Lighthouse, and eslint-plugin-jsx-a11y. Always test with keyboard-only navigation.",
     "key_concepts": ["WCAG", "semantic HTML", "ARIA", "keyboard navigation", "color contrast", "screen readers", "testing tools"],
     "topic": "accessibility",
     "difficulty": "medium",
+    "domain": "software_engineering",
     "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What is the difference between let, const, and var in JavaScript?",
+    "ideal_answer": "var is function-scoped and hoisted with undefined initialization, allowing redeclaration. let is block-scoped, hoisted but in temporal dead zone until declaration, doesn't allow redeclaration in same scope. const is block-scoped like let but cannot be reassigned (though object properties can still mutate). Modern best practice: use const by default, let when reassignment needed, avoid var entirely. This prevents common bugs from var's function scoping and hoisting behavior.",
+    "key_concepts": ["block scope", "function scope", "hoisting", "temporal dead zone", "immutability"],
+    "topic": "javascript fundamentals",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack", "backend"]
+  },
+  {
+    "question": "Explain async/await in JavaScript",
+    "ideal_answer": "async/await is syntactic sugar over Promises, making async code look synchronous. An async function always returns a Promise. await pauses execution until the Promise resolves, then returns the resolved value. Errors are caught with try/catch instead of .catch(). Benefits: cleaner code, better error handling, easier debugging with stack traces. Multiple awaits run sequentially; use Promise.all() for parallel execution. Top-level await is supported in modules.",
+    "key_concepts": ["promises", "syntactic sugar", "try/catch", "Promise.all", "sequential vs parallel", "error handling"],
+    "topic": "javascript async",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack", "backend"]
+  },
+  {
+    "question": "What is the difference between == and === in JavaScript?",
+    "ideal_answer": "== is loose equality that performs type coercion before comparison (e.g., '5' == 5 is true). === is strict equality with no type coercion (e.g., '5' === 5 is false). Strict equality is safer and more predictable. Always use === unless you have a specific reason for type coercion. Common gotchas with ==: null == undefined is true, NaN == NaN is false (use Number.isNaN), 0 == '' is true.",
+    "key_concepts": ["type coercion", "strict equality", "loose equality", "common pitfalls", "best practices"],
+    "topic": "javascript fundamentals",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack", "backend"]
+  },
+  {
+    "question": "What are JavaScript prototypes and prototype chain?",
+    "ideal_answer": "Every JavaScript object has a hidden [[Prototype]] link to another object. When accessing a property, JS looks up the chain until found or hits null. This enables inheritance — Array.prototype methods like map, filter are available on all arrays. Modern class syntax is sugar over prototypes. Object.create() creates objects with specific prototype. Use Object.getPrototypeOf() to inspect, hasOwnProperty() to check own vs inherited properties. Prototype pollution is a security concern.",
+    "key_concepts": ["prototype chain", "inheritance", "Object.create", "hasOwnProperty", "class syntax", "prototype pollution"],
+    "topic": "javascript fundamentals",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack", "backend"]
+  },
+  {
+    "question": "Explain CORS and how to handle it",
+    "ideal_answer": "CORS (Cross-Origin Resource Sharing) is a browser security mechanism that blocks requests to different origins by default. The server must include Access-Control-Allow-Origin headers to allow cross-origin requests. Preflight requests (OPTIONS) check permissions for non-simple requests. In Express, use the cors middleware: cors({ origin: 'https://example.com', credentials: true }). For development, use proxy in webpack/Vite. Common errors: missing headers, credentials with wildcard origin (not allowed), preflight failures.",
+    "key_concepts": ["same-origin policy", "preflight requests", "Access-Control-Allow-Origin", "credentials", "cors middleware"],
+    "topic": "web security",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is the box model in CSS?",
+    "ideal_answer": "Every HTML element is a rectangular box with four parts: content (inner area), padding (space inside the border), border (the line around padding), and margin (space outside the border). Default box-sizing is content-box where width/height apply only to content. Modern practice: set box-sizing: border-box globally so width includes padding and border, making layout calculations easier. Margin can collapse vertically between adjacent elements.",
+    "key_concepts": ["content-box", "border-box", "padding", "margin", "border", "margin collapse"],
+    "topic": "css fundamentals",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "Explain useEffect dependencies and common pitfalls",
+    "ideal_answer": "useEffect runs after render. Dependencies array controls when it re-runs: empty array means once on mount, no array means every render, with dependencies means when they change. Common pitfalls: missing dependencies cause stale closures, object/array dependencies cause infinite loops (use useMemo), forgetting cleanup (return function) causes memory leaks. Use ESLint's exhaustive-deps rule. For derived values, prefer useMemo over useEffect. For event handlers, use useCallback.",
+    "key_concepts": ["dependency array", "stale closures", "cleanup function", "infinite loops", "exhaustive-deps", "useMemo"],
+    "topic": "react hooks",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What is the difference between controlled and uncontrolled components in React?",
+    "ideal_answer": "Controlled components have their state managed by React via useState — the input value comes from state and onChange updates it. Uncontrolled components manage their own state internally, accessed via refs (useRef). Controlled is preferred for validation, dynamic inputs, instant feedback. Uncontrolled is simpler for forms with many inputs, file inputs (always uncontrolled), or third-party integrations. React Hook Form library combines benefits of both.",
+    "key_concepts": ["controlled components", "uncontrolled components", "useRef", "form handling", "React Hook Form"],
+    "topic": "react forms",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "Explain CSS specificity",
+    "ideal_answer": "Specificity determines which CSS rule applies when multiple match. Calculation: inline styles (1000), IDs (100), classes/attributes/pseudo-classes (10), elements/pseudo-elements (1). Higher specificity wins. Same specificity: later rule wins. !important overrides everything but should be avoided. Best practices: use classes (10) over IDs (100) for reusability, avoid deep nesting, use BEM or CSS Modules to keep specificity low and predictable.",
+    "key_concepts": ["specificity calculation", "inline styles", "IDs vs classes", "!important", "BEM", "CSS modules"],
+    "topic": "css fundamentals",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What is server-side rendering (SSR) and when to use it?",
+    "ideal_answer": "SSR renders HTML on the server and sends it to the client. Benefits: better SEO (search engines see content), faster First Contentful Paint, works without JS. Drawbacks: more server load, slower navigation between pages, complexity. Frameworks: Next.js, Remix, Nuxt. Modern alternatives: Static Site Generation (SSG) for unchanging content, Incremental Static Regeneration (ISR), React Server Components. Use SSR for content-heavy public sites; CSR for dashboards/apps after login.",
+    "key_concepts": ["SSR vs CSR", "SEO", "Next.js", "SSG", "ISR", "React Server Components", "FCP"],
+    "topic": "rendering",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "How does HTTP/2 differ from HTTP/1.1?",
+    "ideal_answer": "HTTP/2 introduces multiplexing (multiple requests on single connection), header compression (HPACK), server push, and binary protocol vs HTTP/1.1 text. Eliminates need for sharding domains, image sprites, concatenation. HTTP/1.1 has head-of-line blocking; HTTP/2 doesn't at HTTP level (but TCP still does). HTTP/3 uses QUIC over UDP to solve TCP head-of-line blocking. Modern CDNs and servers support HTTP/2 by default with HTTPS required.",
+    "key_concepts": ["multiplexing", "header compression", "server push", "binary protocol", "HTTP/3 QUIC", "head-of-line blocking"],
+    "topic": "networking",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is GraphQL and how does it compare to REST?",
+    "ideal_answer": "GraphQL is a query language where clients specify exactly what data they need in a single request. Solves REST problems: over-fetching, under-fetching, multiple round trips. Single endpoint, strongly typed schema, introspection. Trade-offs: caching is harder (POST requests, dynamic queries), N+1 problem (use DataLoader), complexity for simple APIs, security concerns with deep queries. REST is simpler, has better HTTP caching, well-understood. Use GraphQL for complex client needs, REST for simple APIs and external interfaces.",
+    "key_concepts": ["query language", "over-fetching", "under-fetching", "single endpoint", "DataLoader", "schema", "introspection"],
+    "topic": "api design",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "Explain OAuth 2.0 flow",
+    "ideal_answer": "OAuth 2.0 is an authorization framework with four main flows. Authorization Code (most common for web apps): user redirected to provider, logs in, redirected back with code, app exchanges code for access token. Implicit flow (deprecated). Client Credentials for server-to-server. Resource Owner Password Credentials (avoid). PKCE extension for mobile/SPAs. Access tokens are short-lived; refresh tokens for longer sessions. Scopes limit permissions. Common providers: Google, GitHub, Auth0. JWT is one possible token format.",
+    "key_concepts": ["authorization code flow", "PKCE", "access token", "refresh token", "scopes", "OAuth providers"],
+    "topic": "authentication",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is dependency injection and why is it useful?",
+    "ideal_answer": "Dependency injection (DI) is a pattern where dependencies are provided to a class/function rather than created internally. Benefits: loose coupling, easier testing (inject mocks), flexible swapping of implementations, follows Dependency Inversion Principle. Types: constructor injection, setter injection, interface injection. In Node.js: pass dependencies as function arguments or use DI containers like InversifyJS or NestJS's built-in DI. Example: pass database connection to service instead of importing globally.",
+    "key_concepts": ["loose coupling", "constructor injection", "testability", "DI containers", "InversifyJS", "Dependency Inversion"],
+    "topic": "design patterns",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "How do you optimize a slow SQL query?",
+    "ideal_answer": "Start with EXPLAIN ANALYZE to see the execution plan. Common optimizations: add indexes on WHERE, JOIN, ORDER BY columns; rewrite subqueries as JOINs; avoid SELECT * — fetch only needed columns; use LIMIT for pagination; denormalize for read-heavy workloads; use covering indexes; partition large tables; check for missing indexes on foreign keys; avoid functions on indexed columns in WHERE; use CTEs or window functions instead of subqueries when appropriate.",
+    "key_concepts": ["EXPLAIN ANALYZE", "indexing", "execution plan", "covering index", "denormalization", "partitioning", "query rewriting"],
+    "topic": "sql optimization",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack", "data_engineer"]
+  },
+  {
+    "question": "What is the N+1 query problem and how to solve it?",
+    "ideal_answer": "N+1 occurs when fetching a list (1 query) then making N additional queries for related data (one per item). Example: fetch 10 posts, then fetch comments for each = 11 queries. Solutions: eager loading with JOINs (Prisma's include, SQLAlchemy's joinedload), batch loading with DataLoader (GraphQL), using SELECT ... WHERE id IN (...). Always log/profile queries in development. ORMs often hide this — explicitly opt-in to eager loading.",
+    "key_concepts": ["eager loading", "lazy loading", "DataLoader", "JOIN queries", "ORM gotchas", "query profiling"],
+    "topic": "database performance",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack", "data_engineer"]
+  },
+  {
+    "question": "Explain database transactions and ACID properties",
+    "ideal_answer": "A transaction is a unit of work that succeeds or fails atomically. ACID: Atomicity (all or nothing), Consistency (DB remains valid), Isolation (concurrent transactions don't interfere), Durability (committed data persists). Isolation levels: Read Uncommitted, Read Committed, Repeatable Read, Serializable — trade-offs between consistency and performance. Use transactions for multi-step operations like bank transfers, user registration with profile creation. In Prisma: prisma.$transaction([]). Be aware of deadlocks and long-running transactions blocking others.",
+    "key_concepts": ["atomicity", "consistency", "isolation", "durability", "isolation levels", "deadlocks", "Prisma transactions"],
+    "topic": "databases",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack", "data_engineer"]
+  },
+  {
+    "question": "What is event-driven architecture?",
+    "ideal_answer": "Event-driven architecture decouples services through asynchronous events. Producers emit events to a broker (Kafka, RabbitMQ, AWS SNS/SQS); consumers process events independently. Benefits: loose coupling, scalability, resilience, audit trail. Patterns: event sourcing (store events as source of truth), CQRS (separate read/write models), publish-subscribe, event streaming. Trade-offs: eventual consistency, debugging complexity, ordering challenges. Use for microservices communication, notifications, analytics, real-time data pipelines.",
+    "key_concepts": ["event broker", "Kafka", "event sourcing", "CQRS", "pub-sub", "eventual consistency", "decoupling"],
+    "topic": "system design",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "How would you design a URL shortener like bit.ly?",
+    "ideal_answer": "Core: generate short codes (base62 encoding of auto-increment ID, or hash with collision handling), store mapping in DB. Architecture: load balancer, stateless API servers, database (PostgreSQL for ACID or Redis for speed), cache (Redis) for hot URLs. Endpoints: POST /shorten, GET /:code (redirect with 301/302). Scale: read-heavy, so heavy caching, read replicas, CDN. Analytics: log clicks asynchronously to queue. Considerations: custom aliases, expiration, rate limiting, abuse prevention.",
+    "key_concepts": ["base62 encoding", "caching", "read replicas", "rate limiting", "301 vs 302", "analytics pipeline"],
+    "topic": "system design",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is the difference between processes and threads?",
+    "ideal_answer": "Processes are independent execution units with separate memory space; expensive to create, communicate via IPC. Threads share memory within a process; cheaper to create, communicate via shared variables (need synchronization). Node.js is single-threaded with worker threads for CPU-heavy tasks. Python has GIL (Global Interpreter Lock) limiting true parallelism — use multiprocessing for CPU-bound, threading for I/O-bound. Modern JS uses Web Workers for browser parallelism.",
+    "key_concepts": ["memory isolation", "IPC", "GIL", "Web Workers", "worker threads", "concurrency vs parallelism"],
+    "topic": "concurrency",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "Explain memoization and when to use it",
+    "ideal_answer": "Memoization caches function results based on input arguments, returning cached result for same inputs. Useful for: pure functions with expensive computation, recursive algorithms (Fibonacci), React optimization (useMemo, useCallback, React.memo). Implementation: wrap function, use Map keyed by args. Trade-offs: memory usage, only works for pure functions, cache invalidation. In React: useMemo for values, useCallback for functions, React.memo for components. Don't memoize trivial computations — overhead exceeds benefit.",
+    "key_concepts": ["caching", "pure functions", "useMemo", "useCallback", "React.memo", "trade-offs"],
+    "topic": "optimization",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack", "backend"]
+  },
+  {
+    "question": "What are design patterns? Give examples you've used",
+    "ideal_answer": "Design patterns are reusable solutions to common problems. Creational: Singleton (single instance, e.g., DB connection), Factory (create objects without specifying class), Builder. Structural: Adapter, Decorator (React HOCs), Facade. Behavioral: Observer (event emitters, Redux), Strategy (different algorithms), Iterator. Modern alternatives: hooks instead of HOCs, dependency injection instead of Singleton. Don't force patterns — use when they solve actual problems. Anti-pattern awareness equally important.",
+    "key_concepts": ["Singleton", "Factory", "Observer", "Decorator", "Strategy", "when to apply", "anti-patterns"],
+    "topic": "design patterns",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "How do you handle file uploads in a web application?",
+    "ideal_answer": "Frontend: multipart/form-data, FormData API, progress tracking via XMLHttpRequest or fetch. Backend: multer (Express), python-multipart (FastAPI). For large files: chunked upload, resumable uploads (tus protocol). Storage: S3/cloud storage directly via presigned URLs (avoid backend proxy). Validation: file type (magic bytes, not extension), size limits, virus scanning. Security: never serve user uploads from app domain (XSS risk), use separate CDN domain. Process async (image resize, video transcoding) via queue.",
+    "key_concepts": ["multipart/form-data", "S3 presigned URLs", "chunked upload", "tus protocol", "file validation", "async processing"],
+    "topic": "file handling",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is sharding in databases?",
+    "ideal_answer": "Sharding splits a database horizontally across multiple servers, each holding subset of data. Shard key determines which shard data goes to (e.g., user_id range or hash). Benefits: horizontal scaling beyond single server limits, parallel query execution. Challenges: cross-shard queries are expensive, rebalancing is hard, shard key choice is permanent. Alternatives: read replicas (scale reads), vertical scaling (bigger server), caching. Use cloud-managed (DynamoDB, Cosmos DB) when possible. Application-level vs middleware vs DB-native sharding.",
+    "key_concepts": ["horizontal partitioning", "shard key", "rebalancing", "cross-shard queries", "alternatives to sharding"],
+    "topic": "databases",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["backend", "data_engineer"]
+  },
+  {
+    "question": "Explain WebSocket vs Server-Sent Events vs Long Polling",
+    "ideal_answer": "Long Polling: client sends request, server holds until data available or timeout, client immediately re-requests. Simple but inefficient. Server-Sent Events (SSE): one-way server-to-client over HTTP, automatic reconnection, text-only. Use for: live feeds, notifications. WebSocket: full-duplex bidirectional, both sides send anytime, binary support. Use for: chat, games, collaboration. Trade-offs: SSE simpler and works with HTTP infrastructure; WebSocket more powerful but requires upgrade handshake. SSE has connection limits per domain.",
+    "key_concepts": ["long polling", "SSE", "WebSocket", "full-duplex", "use cases", "trade-offs"],
+    "topic": "real-time",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is the difference between cookies, localStorage, and sessionStorage?",
+    "ideal_answer": "Cookies: 4KB limit, sent with every HTTP request, can be httpOnly (secure from JS), expire-able, accessible by server. localStorage: 5-10MB, persistent until cleared, same-origin only, synchronous, accessible by JS only. sessionStorage: same as localStorage but cleared on tab close. Use cookies for auth tokens (httpOnly), localStorage for user preferences (theme, language), sessionStorage for temporary data. Security: localStorage vulnerable to XSS; httpOnly cookies are safer for sensitive data. New: Cookie Store API, IndexedDB for larger structured data.",
+    "key_concepts": ["httpOnly cookies", "localStorage", "sessionStorage", "XSS vulnerability", "size limits", "IndexedDB"],
+    "topic": "web storage",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "How do you ensure code quality in a team?",
+    "ideal_answer": "Multiple layers: linters (ESLint, Pylint) and formatters (Prettier, Black) auto-enforced via pre-commit hooks (Husky); strict TypeScript with strict mode; comprehensive testing with coverage requirements; mandatory code reviews on PRs with checklist; CI/CD blocking on test/lint failures; static analysis tools (SonarQube); style guide documentation; architecture decision records (ADRs); pair programming for complex features; regular tech debt reviews. Culture matters: psychological safety to give honest feedback.",
+    "key_concepts": ["linting", "code review", "TypeScript strict", "pre-commit hooks", "CI/CD", "ADRs", "testing coverage"],
+    "topic": "best practices",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What are HTTP status codes? Give common examples",
+    "ideal_answer": "Three-digit codes indicating request result. 1xx informational. 2xx success: 200 OK, 201 Created, 204 No Content. 3xx redirection: 301 Permanent, 302 Found, 304 Not Modified. 4xx client errors: 400 Bad Request, 401 Unauthorized (not authenticated), 403 Forbidden (authenticated but no permission), 404 Not Found, 409 Conflict, 422 Unprocessable Entity, 429 Too Many Requests. 5xx server errors: 500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout. Use correct codes for proper REST APIs.",
+    "key_concepts": ["2xx success", "4xx client errors", "5xx server errors", "401 vs 403", "REST conventions"],
+    "topic": "http",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "Explain the difference between PUT and PATCH",
+    "ideal_answer": "PUT replaces the entire resource — send all fields, missing ones become null/default. Idempotent: multiple identical requests have same effect. PATCH partially updates — send only changed fields. Can be idempotent depending on implementation. Use PUT for full updates (rare in practice), PATCH for partial updates (most common). JSON Patch (RFC 6902) or JSON Merge Patch (RFC 7396) for standardized PATCH formats. Most APIs use PATCH semantics even when calling it PUT.",
+    "key_concepts": ["idempotency", "partial vs full update", "JSON Patch", "RESTful semantics"],
+    "topic": "rest api",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is CSRF and how do you prevent it?",
+    "ideal_answer": "CSRF (Cross-Site Request Forgery) tricks authenticated user's browser into making unwanted requests to your site (e.g., transferring money). Prevention: CSRF tokens (synchronized token pattern) — random token in form, validated server-side; SameSite cookie attribute (Lax or Strict) blocks cross-site cookies; check Origin/Referer headers; for APIs, require Authorization header (not auto-sent like cookies); double-submit cookies. Modern frameworks (Express csurf, Django) provide CSRF middleware. SPAs using JWT in Authorization header are largely immune.",
+    "key_concepts": ["CSRF tokens", "SameSite cookies", "Origin checking", "double-submit", "JWT immunity"],
+    "topic": "web security",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is XSS and how do you prevent it?",
+    "ideal_answer": "XSS (Cross-Site Scripting) injects malicious scripts into web pages. Types: Stored (saved in DB, served to users), Reflected (in URL params, executed on render), DOM-based (modifies DOM). Prevention: escape/sanitize all user input on output (React does this by default with {}), use Content Security Policy (CSP) headers, validate input strictly, avoid dangerouslySetInnerHTML, use httpOnly cookies for auth tokens (prevents JS access), sanitization libraries (DOMPurify), avoid eval() and innerHTML.",
+    "key_concepts": ["stored XSS", "reflected XSS", "DOM XSS", "CSP", "DOMPurify", "React escaping", "httpOnly cookies"],
+    "topic": "web security",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is SQL injection and how do you prevent it?",
+    "ideal_answer": "SQL injection inserts malicious SQL through user input that gets executed (e.g., ' OR 1=1 --). Can read, modify, or delete data; bypass auth; execute admin commands. Prevention: ALWAYS use parameterized queries / prepared statements (placeholders, not string concatenation); ORMs (Prisma, SQLAlchemy) do this automatically; validate and whitelist input; principle of least privilege for DB users; escape input as fallback (not primary defense); use stored procedures carefully; web application firewall (WAF).",
+    "key_concepts": ["parameterized queries", "prepared statements", "ORMs", "input validation", "least privilege", "WAF"],
+    "topic": "web security",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "Explain the difference between authentication and authorization",
+    "ideal_answer": "Authentication answers 'Who are you?' — verifying identity via passwords, tokens, biometrics. Authorization answers 'What can you do?' — checking permissions for resources/actions. Authentication happens once (login); authorization happens on every protected request. Example: logging in (authentication), checking if you can delete a post (authorization). Often confused. Both are needed. Authentication failures return 401; authorization failures return 403. Implement separately for clarity.",
+    "key_concepts": ["identity verification", "permission checking", "401 vs 403", "separation of concerns"],
+    "topic": "security",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is the purpose of package-lock.json or yarn.lock?",
+    "ideal_answer": "Lock files record exact versions of all dependencies (including transitive) installed. Without them, package.json's version ranges (^1.2.3) could install different versions on different machines, breaking reproducibility. Commit lock files to version control. npm uses package-lock.json, Yarn uses yarn.lock, pnpm uses pnpm-lock.yaml. CI should use npm ci (clean install from lock file) for deterministic builds. Update lock files when adding/updating dependencies. Resolves the 'works on my machine' problem.",
+    "key_concepts": ["dependency locking", "deterministic builds", "npm ci", "transitive dependencies", "reproducibility"],
+    "topic": "package management",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "How do you handle environment variables in a Node.js application?",
+    "ideal_answer": "Use process.env for access. Load from .env files via dotenv package in development. Never commit .env files — add to .gitignore. Use .env.example as template. Validate required env vars at startup (zod, envalid) to fail fast. Different .env per environment (.env.development, .env.production). For secrets: use secret managers (AWS Secrets Manager, Vault), not files. In containers: pass via Docker env or Kubernetes secrets. Type env vars in TypeScript for safety.",
+    "key_concepts": ["dotenv", ".env files", "validation", "secret management", "gitignore", "envalid"],
+    "topic": "configuration",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack", "devops"]
+  },
+  {
+    "question": "Explain SQL JOINs with examples",
+    "ideal_answer": "JOINs combine rows from multiple tables. INNER JOIN: rows where both tables match. LEFT JOIN: all left rows + matching right (NULL if no match). RIGHT JOIN: opposite. FULL OUTER JOIN: all rows from both. CROSS JOIN: Cartesian product. SELF JOIN: table joined with itself (e.g., employee-manager). Example: SELECT u.name, p.title FROM users u INNER JOIN posts p ON u.id = p.user_id. Use indexes on join columns. Avoid joining 5+ tables — consider denormalization or query rewriting.",
+    "key_concepts": ["INNER JOIN", "LEFT JOIN", "FULL OUTER", "self join", "join performance", "indexing join columns"],
+    "topic": "sql",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack", "data_analyst", "data_engineer"]
+  },
+  {
+    "question": "What are SQL window functions?",
+    "ideal_answer": "Window functions perform calculations across rows related to current row without grouping. Don't collapse rows like GROUP BY. Examples: ROW_NUMBER(), RANK(), DENSE_RANK() for ranking; LAG/LEAD for previous/next row; running totals with SUM() OVER (ORDER BY date); partitions with PARTITION BY (like GROUP BY within window). Use cases: top-N per category, running totals, period-over-period comparison, finding gaps. Modern feature — supported by PostgreSQL, MySQL 8+, SQL Server, Oracle.",
+    "key_concepts": ["OVER clause", "PARTITION BY", "ROW_NUMBER", "LAG/LEAD", "running totals", "top-N per group"],
+    "topic": "sql advanced",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["backend", "data_analyst", "data_engineer"]
+  },
+  {
+    "question": "What is normalization in databases?",
+    "ideal_answer": "Normalization organizes data to reduce redundancy and improve integrity. 1NF: atomic values (no repeating groups). 2NF: 1NF + no partial dependencies on composite key. 3NF: 2NF + no transitive dependencies. BCNF: stricter 3NF. Higher forms (4NF, 5NF) rarely needed. Pros: less redundancy, easier updates, smaller storage. Cons: more JOINs (slower reads), complex queries. Denormalize when read performance critical (reporting, dashboards). Modern practice: normalize for OLTP, denormalize for OLAP/analytics.",
+    "key_concepts": ["1NF", "2NF", "3NF", "BCNF", "denormalization", "OLTP vs OLAP", "trade-offs"],
+    "topic": "database design",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack", "data_engineer"]
+  },
+  {
+    "question": "Explain CAP theorem",
+    "ideal_answer": "CAP theorem: a distributed system can guarantee at most 2 of 3 properties — Consistency (all nodes see same data), Availability (every request gets response), Partition tolerance (works despite network partitions). Since network partitions are inevitable, real choice is CP vs AP. CP examples: traditional RDBMS (PostgreSQL), HBase — may reject writes during partition. AP examples: Cassandra, DynamoDB — accept writes, reconcile later (eventual consistency). PACELC extends: also consider latency vs consistency when no partition.",
+    "key_concepts": ["consistency", "availability", "partition tolerance", "CP vs AP", "eventual consistency", "PACELC"],
+    "topic": "distributed systems",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What are arrays vs linked lists?",
+    "ideal_answer": "Arrays: contiguous memory, O(1) access by index, O(n) insert/delete (shifting), fixed or dynamic size (e.g., ArrayList). Linked lists: nodes with pointers, O(n) access, O(1) insert/delete at known position, no resizing. Doubly linked lists allow backward traversal. Use arrays for random access and iteration. Use linked lists when frequent insertions/deletions, unknown size, or implementing stacks/queues. Cache locality favors arrays. JS arrays are dynamic arrays under the hood.",
+    "key_concepts": ["random access", "insertion complexity", "memory locality", "doubly linked", "use cases"],
+    "topic": "data structures",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "Explain hash tables and their time complexity",
+    "ideal_answer": "Hash tables map keys to values using hash function to compute array index. Average O(1) insert/lookup/delete; worst case O(n) with collisions. Collision resolution: chaining (linked list at each bucket) or open addressing (linear/quadratic probing). Load factor (filled / total) affects performance — resize when too high. Hash function quality crucial: uniform distribution prevents clustering. Use cases: dictionaries/objects in JS, sets, caching, deduplication. Trade-offs: memory overhead, unordered. Java's HashMap, Python's dict, JS's Map are hash tables.",
+    "key_concepts": ["hash function", "collisions", "chaining", "open addressing", "load factor", "O(1) average"],
+    "topic": "data structures",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is binary search and when can you use it?",
+    "ideal_answer": "Binary search finds element in sorted array by repeatedly halving search space. O(log n) vs O(n) linear search. Requires sorted data — sorting first is O(n log n), so only worth it for multiple searches. Implementation: track low/high pointers, compute mid, compare. Variants: find first/last occurrence, find rotation point, search in rotated sorted array. Pitfalls: integer overflow (use low + (high-low)/2), off-by-one errors. Use binary search when data is sorted and you need fast lookup.",
+    "key_concepts": ["logarithmic time", "sorted requirement", "two pointers", "rotated array", "edge cases"],
+    "topic": "algorithms",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "Explain Big O notation",
+    "ideal_answer": "Big O describes upper bound of algorithm complexity as input grows. Common: O(1) constant (hash lookup), O(log n) logarithmic (binary search), O(n) linear (loop), O(n log n) (efficient sorting), O(n²) quadratic (nested loops), O(2^n) exponential (naive recursion), O(n!) factorial (permutations). Ignore constants and lower-order terms — focus on growth rate. Space complexity follows same notation. Best, average, worst case can differ. Optimize hot paths; don't over-optimize cold code.",
+    "key_concepts": ["asymptotic analysis", "constant time", "logarithmic", "linear", "quadratic", "space complexity"],
+    "topic": "algorithms",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What are trees and binary search trees?",
+    "ideal_answer": "Trees: hierarchical structure with root, children, leaves. Binary tree: max 2 children. Binary Search Tree (BST): left subtree < node < right subtree, enables O(log n) search/insert/delete if balanced. Unbalanced BST degrades to O(n). Self-balancing: AVL trees (strictly balanced), Red-Black trees (used in Java TreeMap, C++ map), B-trees (database indexes). Traversals: in-order (sorted output for BST), pre-order, post-order, level-order (BFS). Use trees for hierarchical data, sorted operations, ranges.",
+    "key_concepts": ["BST properties", "balanced trees", "AVL", "Red-Black", "B-tree", "traversal types"],
+    "topic": "data structures",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "Explain recursion with an example",
+    "ideal_answer": "Recursion: function calls itself with smaller input until base case. Example: factorial(n) = n * factorial(n-1), base case factorial(0) = 1. Components: base case (stops recursion), recursive case (problem reduction). Pros: elegant for tree/graph traversal, divide-and-conquer (merge sort, quicksort). Cons: stack overflow for deep recursion, memory overhead. Tail recursion optimization (not in JS by default). Common patterns: DFS, tree traversal, backtracking. Often convertible to iteration with explicit stack.",
+    "key_concepts": ["base case", "recursive case", "stack overflow", "tail recursion", "iteration alternative", "divide-and-conquer"],
+    "topic": "algorithms",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is dynamic programming?",
+    "ideal_answer": "Dynamic programming (DP) solves problems by breaking into overlapping subproblems and storing results to avoid recomputation. Two approaches: memoization (top-down, recursive + cache) and tabulation (bottom-up, iterative + table). Indicators: optimal substructure + overlapping subproblems. Classic examples: Fibonacci, longest common subsequence, knapsack, coin change. Steps: define state, find recurrence, identify base cases, decide top-down vs bottom-up. Space optimization sometimes possible (e.g., Fibonacci using two variables).",
+    "key_concepts": ["memoization", "tabulation", "optimal substructure", "overlapping subproblems", "Fibonacci", "knapsack"],
+    "topic": "algorithms",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What is BFS and DFS?",
+    "ideal_answer": "Graph/tree traversal algorithms. BFS (Breadth-First Search): level by level using queue, finds shortest path in unweighted graphs. DFS (Depth-First Search): go deep using stack/recursion, useful for topological sort, cycle detection, connected components. Time: O(V+E) both. Space: BFS can use more memory (wide tree), DFS more for deep recursion. Use BFS for shortest path, DFS for path existence, exploring all paths. Variants: bidirectional BFS, iterative deepening DFS.",
+    "key_concepts": ["queue vs stack", "shortest path", "topological sort", "cycle detection", "O(V+E)", "use cases"],
+    "topic": "graph algorithms",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "What sorting algorithms do you know?",
+    "ideal_answer": "Common sorts: Bubble Sort (O(n²), simple, slow). Selection Sort (O(n²), few swaps). Insertion Sort (O(n²), good for nearly sorted). Merge Sort (O(n log n), stable, requires O(n) space). Quick Sort (avg O(n log n), worst O(n²), in-place). Heap Sort (O(n log n), in-place, not stable). Counting/Radix/Bucket (O(n+k), non-comparison, specific use cases). JS Array.sort uses TimSort (hybrid merge+insertion). Choose based on data characteristics, stability needs, memory constraints.",
+    "key_concepts": ["O(n²) vs O(n log n)", "stable sorting", "in-place", "TimSort", "quicksort partitioning", "merge sort"],
+    "topic": "algorithms",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is two-pointer technique?",
+    "ideal_answer": "Two-pointer technique uses two indices moving through array, often from opposite ends or at different speeds. Common patterns: opposite directions (find pair summing to target in sorted array), same direction at different speeds (linked list cycle detection — Floyd's), sliding window (variable). Examples: reverse array, palindrome check, container with most water, remove duplicates from sorted array. Reduces O(n²) brute force to O(n). Often used with sorted arrays.",
+    "key_concepts": ["opposite ends", "fast/slow pointers", "Floyd's algorithm", "palindrome", "O(n) optimization"],
+    "topic": "algorithms",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "Explain sliding window technique",
+    "ideal_answer": "Sliding window solves problems involving contiguous subarrays/substrings. Fixed window: maintain window of size k, slide one position at a time (e.g., max sum of k consecutive). Variable window: expand right, contract left based on condition (e.g., longest substring without repeating characters). Uses two pointers + hash map/set typically. Converts O(n²) or O(n³) brute force to O(n). Examples: longest substring with k distinct, minimum window substring, max sum subarray of size k.",
+    "key_concepts": ["fixed window", "variable window", "two pointers", "hash map", "substring problems"],
+    "topic": "algorithms",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is a stack and queue?",
+    "ideal_answer": "Stack: LIFO (Last In First Out). Operations: push (add to top), pop (remove from top), peek. Use cases: function call stack, undo/redo, expression evaluation, DFS, browser history. Queue: FIFO (First In First Out). Operations: enqueue (add to back), dequeue (remove from front), front. Use cases: BFS, task scheduling, request handling, print queues. Variants: deque (double-ended), priority queue (heap-based), circular queue. JS: array.push/pop for stack, array.push/shift for queue (shift is O(n) though).",
+    "key_concepts": ["LIFO vs FIFO", "push/pop", "enqueue/dequeue", "use cases", "deque", "priority queue"],
+    "topic": "data structures",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "How do you choose between SQL JOINs and subqueries?",
+    "ideal_answer": "Often equivalent results, choose based on: readability (JOINs often clearer for relating tables), performance (modern optimizers usually equal, but JOINs sometimes better — use EXPLAIN). Subqueries useful for: existence checks (EXISTS), correlated queries, scalar values (single value in SELECT). JOINs better for: multiple columns from related tables, aggregations across tables. Use CTE (WITH clause) for complex queries — easier to read than nested subqueries.",
+    "key_concepts": ["EXISTS", "correlated subqueries", "CTE", "EXPLAIN ANALYZE", "readability vs performance"],
+    "topic": "sql",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "data_analyst", "data_engineer"]
+  },
+  {
+    "question": "What is Python's GIL and its implications?",
+    "ideal_answer": "GIL (Global Interpreter Lock) is a mutex in CPython allowing only one thread to execute Python bytecode at a time. Implication: threading doesn't help CPU-bound tasks. Use multiprocessing (separate processes, no GIL) for CPU-bound; threading still useful for I/O-bound (releases GIL during I/O). Async/await (asyncio) is alternative for I/O concurrency. Alternative implementations (Jython, IronPython) lack GIL. PEP 703 proposed making GIL optional (no-GIL Python coming).",
+    "key_concepts": ["mutex", "CPU-bound vs I/O-bound", "multiprocessing", "asyncio", "no-GIL Python"],
+    "topic": "python",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "data_scientist", "ml_engineer"]
+  },
+  {
+    "question": "Explain Python decorators",
+    "ideal_answer": "Decorators are functions that modify other functions/classes, applied with @ syntax. They wrap the original function, adding behavior before/after. Common uses: logging, timing, authentication, caching (@lru_cache), routes (Flask/FastAPI's @app.get), property accessors (@property), class methods (@classmethod, @staticmethod). Built using closures. Decorators with arguments need extra wrapping function. Use functools.wraps to preserve original function metadata. Composable: stack multiple decorators.",
+    "key_concepts": ["@ syntax", "closures", "functools.wraps", "@lru_cache", "@property", "composability"],
+    "topic": "python",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "data_scientist", "ml_engineer"]
+  },
+  {
+    "question": "What is the difference between list and tuple in Python?",
+    "ideal_answer": "List: mutable (can change), uses [], slower, more memory, has more methods (append, pop, etc.). Tuple: immutable (cannot change after creation), uses (), faster, less memory, hashable so can be dict key or set element. Use list for collections that change. Use tuple for fixed records (coordinates, RGB colors), function return of multiple values, dict keys, set elements. Named tuples (collections.namedtuple) add field names. Frozenset is immutable set.",
+    "key_concepts": ["mutability", "immutability", "hashability", "performance", "named tuples", "use cases"],
+    "topic": "python",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["backend", "data_scientist", "ml_engineer"]
+  },
+  {
+    "question": "Explain list comprehensions in Python",
+    "ideal_answer": "Concise syntax for creating lists from iterables: [expression for item in iterable if condition]. More readable than map/filter for many cases. Faster than equivalent for loops (CPython optimization). Examples: [x*2 for x in range(10)], [x for x in items if x > 0]. Similar constructs: dict comprehension {k: v for ...}, set comprehension {x for ...}, generator expression (x for ...) for memory efficiency. Avoid for complex logic — use regular loops for readability.",
+    "key_concepts": ["concise syntax", "generator expressions", "dict comprehension", "set comprehension", "readability"],
+    "topic": "python",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["backend", "data_scientist", "ml_engineer"]
+  },
+  {
+    "question": "What is FastAPI and how does it compare to Flask?",
+    "ideal_answer": "FastAPI is modern Python web framework built on Starlette and Pydantic. Advantages over Flask: native async/await (ASGI vs WSGI), automatic request validation via Pydantic, auto-generated OpenAPI docs at /docs, dependency injection system, type hints throughout. Performance comparable to Node.js/Go (one of fastest Python frameworks). Type safety catches bugs at edit time. Use FastAPI for new projects, especially APIs and ML services. Flask still useful for simple apps or when team prefers minimal framework.",
+    "key_concepts": ["async/await", "Pydantic", "ASGI", "auto-generated docs", "dependency injection", "type hints"],
+    "topic": "fastapi",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "ml_engineer"]
+  },
+  {
+    "question": "What is async programming and event loop in Python?",
+    "ideal_answer": "Async programming runs concurrent I/O operations without threads. Uses async/await syntax over asyncio library. Event loop schedules coroutines. async def declares coroutine, await pauses for I/O completion. asyncio.gather() runs multiple coroutines concurrently. Use for I/O-bound tasks: API calls, DB queries, file I/O. Not for CPU-bound (use multiprocessing). Modern frameworks (FastAPI, aiohttp) are async-native. Database drivers (asyncpg) and HTTP clients (httpx, aiohttp) have async versions.",
+    "key_concepts": ["asyncio", "coroutines", "event loop", "asyncio.gather", "async DB drivers", "I/O bound"],
+    "topic": "python async",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "ml_engineer"]
+  },
+  {
+    "question": "Explain Python generators and iterators",
+    "ideal_answer": "Iterators implement __iter__ and __next__ methods, used by for loops. Generators are simpler way to create iterators using yield keyword in functions. Generator expressions like (x for x in ...) for inline. Benefits: memory efficient (lazy evaluation — generates values on demand), can represent infinite sequences. Use cases: reading large files line by line, streaming data, pipelines. send() and throw() for coroutine-like behavior. yield from delegates to sub-generator.",
+    "key_concepts": ["yield", "lazy evaluation", "memory efficiency", "infinite sequences", "yield from", "generator expression"],
+    "topic": "python",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "data_scientist", "ml_engineer"]
+  },
+  {
+    "question": "What is Pydantic and why use it?",
+    "ideal_answer": "Pydantic is Python data validation library using type hints. Defines models as classes inheriting BaseModel. Validates and converts data on instantiation (e.g., '5' becomes 5 for int field). Used heavily in FastAPI for request/response validation. Features: nested models, custom validators, JSON schema generation, settings management. Catches data errors at boundary (API input) before they propagate. Type hints provide IDE autocompletion and mypy compatibility.",
+    "key_concepts": ["type hints", "BaseModel", "validation", "JSON schema", "FastAPI integration", "custom validators"],
+    "topic": "python",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "ml_engineer"]
+  },
+  {
+    "question": "What are Python virtual environments and why use them?",
+    "ideal_answer": "Virtual environments isolate Python dependencies per project, preventing version conflicts. Tools: venv (built-in), virtualenv, conda, poetry, pipenv. Workflow: python -m venv .venv, activate (source .venv/bin/activate), pip install packages. Modern: pyproject.toml for dependencies (PEP 518), poetry/uv for management. Without venvs, project A requiring Django 3 and project B requiring Django 4 would conflict. Always commit requirements.txt or pyproject.toml; never commit .venv folder.",
+    "key_concepts": ["venv", "isolation", "requirements.txt", "pyproject.toml", "poetry", "dependency conflicts"],
+    "topic": "python",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["backend", "data_scientist", "ml_engineer"]
+  },
+  {
+    "question": "What is REST vs gRPC?",
+    "ideal_answer": "REST: HTTP/JSON, human-readable, browser-native, stateless, CRUD-friendly. gRPC: HTTP/2, Protocol Buffers (binary), strongly typed schemas, supports streaming (4 types), faster, smaller payloads. REST best for: public APIs, browser clients, simple CRUD. gRPC best for: microservices communication, low-latency requirements, streaming. gRPC needs code generation from .proto files. Browser support requires grpc-web. Many systems use REST for external API, gRPC internally between services.",
+    "key_concepts": ["HTTP/2", "Protocol Buffers", "streaming", "browser support", "code generation", "use cases"],
+    "topic": "api design",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "How do you scale a web application?",
+    "ideal_answer": "Vertical scaling: bigger server (limit). Horizontal scaling: more servers behind load balancer (preferred). Database: read replicas for read-heavy, sharding for write-heavy, caching layer (Redis). Application: stateless services (sessions in Redis/JWT), CDN for static assets, async processing for slow tasks (message queues). Optimize: profile and fix bottlenecks first, add indexes, query optimization, eager loading. Architecture: microservices for team scaling. Monitoring essential. Cost-optimize after scale works.",
+    "key_concepts": ["horizontal scaling", "read replicas", "CDN", "stateless services", "message queues", "load balancing"],
+    "topic": "scaling",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["backend", "fullstack"]
+  },
+  {
+    "question": "Explain semantic HTML and why it matters",
+    "ideal_answer": "Semantic HTML uses tags conveying meaning: header, nav, main, article, section, aside, footer, time, figure. Non-semantic: div, span. Benefits: accessibility (screen readers understand structure), SEO (search engines parse meaning), maintainability (clearer code), no styling assumptions. Examples: button instead of div with onClick, nav for navigation, article for blog posts. Avoid div-soup. Use ARIA roles only when semantic HTML insufficient.",
+    "key_concepts": ["accessibility", "SEO", "semantic tags", "screen readers", "ARIA", "div-soup"],
+    "topic": "html",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What is the difference between display: none, visibility: hidden, and opacity: 0?",
+    "ideal_answer": "display: none — element removed from layout flow, takes no space, not accessible to screen readers. visibility: hidden — element invisible but takes space, not interactive, hidden from screen readers. opacity: 0 — element invisible but takes space and is interactive (clickable), screen readers may announce. Use display: none for actually removing. visibility: hidden for preserving space. opacity: 0 for animations (transitions work). aria-hidden separately controls screen reader visibility.",
+    "key_concepts": ["layout flow", "interactivity", "accessibility", "transitions", "aria-hidden"],
+    "topic": "css",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "Explain CSS positioning",
+    "ideal_answer": "static (default — normal flow). relative (offset from normal position, space preserved). absolute (out of flow, positioned to nearest positioned ancestor). fixed (positioned to viewport, doesn't scroll). sticky (relative until threshold, then fixed). z-index controls stacking only on positioned elements. Common pattern: relative parent + absolute child for overlays. Use sticky for table headers, navigation. Be aware of containing block (positioned ancestor) for absolute positioning.",
+    "key_concepts": ["static", "relative", "absolute", "fixed", "sticky", "z-index", "containing block"],
+    "topic": "css",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What are CSS animations and transitions?",
+    "ideal_answer": "Transitions: smooth change between two states triggered by event (hover, class change). transition: property duration timing-function delay. Animations: more complex sequences with keyframes. @keyframes name { 0% {...} 100% {...} } and animation: name duration. Performance: animate transform and opacity (GPU-accelerated), avoid animating layout properties (width, height, top). Use will-change to hint browser. Frameworks: Framer Motion, GSAP for complex animations. Respect prefers-reduced-motion.",
+    "key_concepts": ["transitions vs animations", "@keyframes", "GPU acceleration", "transform", "will-change", "accessibility"],
+    "topic": "css",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What is Tailwind CSS and how does it differ from Bootstrap?",
+    "ideal_answer": "Tailwind: utility-first CSS framework — compose styles via small classes (flex, p-4, bg-blue-500). Bootstrap: component-based — pre-styled components (Button, Modal, Card). Tailwind pros: smaller CSS bundle (purge unused), no leaving HTML, custom design system, no naming things. Cons: HTML can look cluttered, learning utility classes. Bootstrap pros: faster prototyping, consistent look. Cons: looks 'Bootstrap-y', harder customization, larger bundle. Modern preference: Tailwind for custom designs, shadcn/ui for accessible components.",
+    "key_concepts": ["utility-first", "component-based", "purge", "design system", "shadcn/ui", "trade-offs"],
+    "topic": "css frameworks",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "Explain the difference between var, function, and class in JavaScript",
+    "ideal_answer": "Three different ways to define reusable code. var declares variables (function-scoped, avoid in modern JS — use let/const). function declarations create named callable code, can be called before declaration (hoisted). class is ES6 syntax for creating constructors with methods, supports inheritance via extends. Under the hood: classes are syntactic sugar over prototype-based inheritance. Arrow functions are different — no own this, can't be constructors. Use function for traditional functions, arrow for callbacks, class for OOP.",
+    "key_concepts": ["hoisting", "function declarations", "class syntax", "prototype", "arrow functions", "this binding"],
+    "topic": "javascript",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What are React Server Components?",
+    "ideal_answer": "Server Components (RSC) render entirely on server, sending only HTML/serialized output to client. Benefits: zero JS bundle for server components, direct DB/file access without API, automatic code splitting, secrets stay on server. Client Components are normal React (use 'use client'). Mix freely: Server Components import Client Components but not vice versa for state. Used by Next.js App Router. Different mental model — components by default are server unless marked. Key for modern React performance.",
+    "key_concepts": ["RSC", "server rendering", "use client directive", "Next.js App Router", "bundle size", "data fetching"],
+    "topic": "react advanced",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "How do you optimize bundle size in a frontend app?",
+    "ideal_answer": "Strategies: code splitting (React.lazy + Suspense, dynamic import()), tree shaking (ES modules, side-effect-free imports), analyze bundle (webpack-bundle-analyzer, vite-bundle-visualizer), use lighter alternatives (date-fns over moment, preact compat), purge unused CSS (Tailwind), lazy load images (loading='lazy'), compress with gzip/brotli, modern syntax (target modern browsers, ES2020+). Audit large dependencies. Consider micro-frontends for large apps. Monitor bundle size in CI (size-limit).",
+    "key_concepts": ["code splitting", "tree shaking", "bundle analyzer", "tree shaking", "dynamic imports", "size-limit"],
+    "topic": "frontend performance",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What is the difference between Promise.all, Promise.race, Promise.allSettled?",
+    "ideal_answer": "All three handle arrays of promises differently. Promise.all: resolves when all resolve, rejects on first rejection (fail-fast). Promise.allSettled: waits for all, returns array of {status, value/reason} regardless. Promise.race: resolves/rejects with first settled promise. Promise.any: resolves with first fulfilled (ignores rejections), rejects if all reject. Use Promise.all when all required and failing-fast is OK. Use allSettled when you need all results regardless of failures.",
+    "key_concepts": ["Promise.all", "Promise.allSettled", "Promise.race", "Promise.any", "fail-fast", "parallel execution"],
+    "topic": "javascript async",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "Explain debouncing and throttling",
+    "ideal_answer": "Both control rate of function execution but differently. Debounce: wait for activity to stop before executing. Useful for search input (wait for typing pause). Throttle: limit execution to once per interval. Useful for scroll/resize handlers (regular updates). Implementation: setTimeout/clearTimeout for debounce, timestamp comparison for throttle. Libraries: lodash debounce/throttle, custom hooks (useDebounce, useThrottle). Common mistake: throttling search input (delays each keystroke). Use debounce for search.",
+    "key_concepts": ["debounce", "throttle", "rate limiting", "search input", "scroll handlers", "lodash"],
+    "topic": "javascript",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What is the spread operator and rest parameters?",
+    "ideal_answer": "Spread (...) expands iterable in places where elements expected. Examples: copy arrays [...arr], merge arrays [...a, ...b], copy objects {...obj}, function args fn(...arr), Math.max(...nums). Rest (...) collects rest into array in function params or destructuring. Example: function fn(first, ...rest), [a, b, ...rest] = array. Spread for expansion, rest for collection — same syntax different position. Shallow copy only — nested objects share reference. Use structuredClone() or libraries for deep clone.",
+    "key_concepts": ["spread operator", "rest parameters", "shallow copy", "iterables", "destructuring", "structuredClone"],
+    "topic": "javascript",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What are higher-order functions in JavaScript?",
+    "ideal_answer": "Higher-order functions take functions as arguments or return functions. Array methods are HOFs: map, filter, reduce, forEach, sort. Custom HOFs enable abstraction: function withLogging(fn) returns wrapped function. Common patterns: function composition, partial application, currying. Enables functional programming. React HOCs are HOFs (taking component, returning component). Modern alternative to HOCs: hooks. Examples in libraries: lodash _.curry, _.compose.",
+    "key_concepts": ["functions as values", "map/filter/reduce", "composition", "currying", "HOCs", "functional programming"],
+    "topic": "javascript",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is the difference between let and const in functions?",
+    "ideal_answer": "Both block-scoped, both have temporal dead zone. let allows reassignment, const doesn't. Objects/arrays declared with const can still mutate properties — only reference is locked. Use const by default, let only when reassignment needed. Helps readability — readers know const variables won't be reassigned. ESLint prefer-const enforces this. Note: const in for loops creates new binding per iteration (unlike var). For pure immutability, use Object.freeze() or libraries like Immer/Immutable.js.",
+    "key_concepts": ["reassignment", "object mutation", "Object.freeze", "Immer", "prefer-const"],
+    "topic": "javascript",
+    "difficulty": "easy",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "Explain CSS variables (custom properties)",
+    "ideal_answer": "CSS variables (--name: value) enable dynamic theming and reuse. Defined on :root for global, can be local to selector. Access with var(--name, fallback). Can be changed via JS: element.style.setProperty('--name', value). Inherits down DOM tree. Use cases: theming (light/dark mode), design tokens, runtime customization. Differences from preprocessors (Sass): CSS vars work at runtime, can be inspected in DevTools, changed dynamically. Modern apps often combine: Sass for build-time, CSS vars for runtime.",
+    "key_concepts": ["custom properties", ":root", "var()", "theming", "dark mode", "runtime vs build-time"],
+    "topic": "css",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "fullstack"]
+  },
+  {
+    "question": "What is the same-origin policy?",
+    "ideal_answer": "Browser security feature restricting how scripts from one origin interact with resources from another origin. Origin = scheme + host + port. Blocks: reading response from different origin, accessing iframe content from different origin, reading cookies of different origin. Doesn't block: making requests (browser sends but blocks response from JS access). CORS allows controlled cross-origin access. postMessage for cross-window communication. Critical for preventing data theft across sites.",
+    "key_concepts": ["origin", "CORS", "cross-origin requests", "iframe restrictions", "postMessage", "security"],
+    "topic": "web security",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["frontend", "backend", "fullstack"]
+  },
+  {
+    "question": "What is data normalization for machine learning?",
+    "ideal_answer": "Normalization scales features to common range, helping algorithms converge faster and weighting features equally. Min-max scaling: (x-min)/(max-min), maps to [0,1]. Standardization (z-score): (x-mean)/std, zero mean unit variance. Use standardization for algorithms assuming normal distribution (linear regression, logistic regression, SVM). Use min-max when bounds matter (neural networks). Tree-based models (Random Forest, XGBoost) don't need normalization. Always fit on training, transform on test (avoid data leakage).",
+    "key_concepts": ["min-max scaling", "standardization", "z-score", "data leakage", "feature scaling"],
+    "topic": "ml preprocessing",
+    "difficulty": "easy",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist", "data_analyst"]
+  },
+  {
+    "question": "Explain overfitting and how to prevent it",
+    "ideal_answer": "Overfitting: model learns training data too well including noise, performing poorly on new data. Signs: high training accuracy but low validation/test accuracy. Prevention: more training data, simpler model (fewer parameters), regularization (L1/L2 penalty), dropout (random neurons disabled), early stopping (halt when validation loss rises), cross-validation, data augmentation, feature selection. Diagnostic: plot training vs validation loss over epochs. Underfitting opposite — model too simple, doesn't capture patterns.",
+    "key_concepts": ["bias-variance tradeoff", "regularization", "dropout", "early stopping", "cross-validation", "data augmentation"],
+    "topic": "ml fundamentals",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "What is the difference between supervised, unsupervised, and reinforcement learning?",
+    "ideal_answer": "Supervised: labeled data, learn input→output mapping. Examples: classification (spam/not), regression (predict price). Algorithms: linear regression, random forest, neural networks. Unsupervised: no labels, find patterns. Examples: clustering (K-means), dimensionality reduction (PCA), anomaly detection. Reinforcement: agent learns by trial and error, receives rewards. Examples: game playing (AlphaGo), robotics, recommendation systems. Semi-supervised mixes both. Self-supervised (BERT, GPT) generates labels from data itself.",
+    "key_concepts": ["labeled vs unlabeled", "classification", "regression", "clustering", "RL", "self-supervised"],
+    "topic": "ml fundamentals",
+    "difficulty": "easy",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "Explain cross-validation",
+    "ideal_answer": "Cross-validation evaluates model on multiple train/test splits for robust performance estimate. K-fold CV: split data into K folds, train on K-1 folds, test on 1, repeat K times. Average results. Common K=5 or 10. Stratified K-fold maintains class proportions (for classification). Leave-one-out for tiny datasets. Time series CV: respects temporal order (forward chaining). Benefits: better generalization estimate than single train/test split, uses all data, identifies high-variance models. Standard in scikit-learn: cross_val_score.",
+    "key_concepts": ["K-fold", "stratified", "time series CV", "generalization", "model evaluation"],
+    "topic": "ml evaluation",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist", "data_analyst"]
+  },
+  {
+    "question": "What are precision, recall, and F1 score?",
+    "ideal_answer": "Classification metrics from confusion matrix. Precision = TP/(TP+FP): of predicted positives, how many correct. Recall = TP/(TP+FN): of actual positives, how many caught. Trade-off: precision-recall curve. F1 = 2*(P*R)/(P+R): harmonic mean, balances both. Accuracy misleading for imbalanced classes. Use precision when false positives costly (spam filter). Use recall when false negatives costly (cancer detection). F1 for balanced view. ROC-AUC measures across all thresholds.",
+    "key_concepts": ["confusion matrix", "precision", "recall", "F1", "ROC-AUC", "imbalanced classes"],
+    "topic": "ml evaluation",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist", "data_analyst"]
+  },
+  {
+    "question": "Explain gradient descent",
+    "ideal_answer": "Gradient descent optimizes model parameters by iteratively moving in direction of negative gradient (steepest decrease) of loss function. Update: w = w - learning_rate * gradient. Variants: Batch GD (entire dataset per step, slow but stable), Stochastic GD (one sample per step, fast but noisy), Mini-batch GD (subset, common compromise). Optimizers: Adam (adaptive learning rate), RMSprop, SGD with momentum. Learning rate critical: too high diverges, too low slow. Learning rate scheduling adjusts during training.",
+    "key_concepts": ["loss function", "gradient", "learning rate", "SGD", "Adam", "momentum", "mini-batch"],
+    "topic": "ml optimization",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "What is the difference between bagging and boosting?",
+    "ideal_answer": "Both ensemble methods combining multiple models. Bagging (Bootstrap Aggregating): train models in parallel on different random subsets (with replacement), average predictions. Reduces variance. Example: Random Forest. Boosting: train models sequentially, each focuses on errors of previous. Reduces bias. Examples: AdaBoost, Gradient Boosting (XGBoost, LightGBM, CatBoost). Boosting usually more accurate but slower, more prone to overfitting. Random Forest more robust, easier to tune.",
+    "key_concepts": ["ensemble methods", "Random Forest", "XGBoost", "variance vs bias", "parallel vs sequential"],
+    "topic": "ml ensemble",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "What is a neural network and how does it work?",
+    "ideal_answer": "Neural network: layered structure of interconnected neurons inspired by brain. Input layer receives data, hidden layers transform, output layer produces prediction. Each connection has weight, neurons sum weighted inputs + bias, apply activation function (ReLU, sigmoid, tanh). Forward pass: compute prediction. Backward pass (backprop): compute gradients of loss with respect to weights, update via gradient descent. Deep learning: many hidden layers. Frameworks: TensorFlow, PyTorch. Architectures: CNNs (images), RNNs/Transformers (sequences).",
+    "key_concepts": ["neurons", "weights", "activation function", "backpropagation", "deep learning", "TensorFlow", "PyTorch"],
+    "topic": "deep learning",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "Explain Transformer architecture",
+    "ideal_answer": "Transformer (Vaswani et al. 2017) revolutionized NLP. Core: self-attention mechanism allowing each token to attend to all others in sequence. Components: encoder (input understanding), decoder (output generation), multi-head attention (parallel attention layers), positional encoding (since no recurrence), feed-forward layers, residual connections, layer normalization. Advantages over RNNs: parallelizable training, captures long-range dependencies. Foundation of all modern LLMs (GPT, BERT, T5, Gemini, Claude). Decoder-only variants for generation, encoder-only for understanding.",
+    "key_concepts": ["self-attention", "multi-head attention", "positional encoding", "encoder-decoder", "LLMs", "parallelization"],
+    "topic": "deep learning",
+    "difficulty": "hard",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "What is RAG (Retrieval-Augmented Generation)?",
+    "ideal_answer": "RAG combines retrieval system with LLM generation to ground responses in external knowledge. Flow: embed query → search vector database → retrieve relevant docs → inject into LLM prompt as context → generate answer. Benefits over fine-tuning: cheap to update, attribution to sources, less hallucination, handle private data without retraining. Components: embedding model (sentence-transformers), vector DB (FAISS, Pinecone, Weaviate), LLM. Chunking strategy crucial: how to split docs. Reranking improves quality.",
+    "key_concepts": ["embeddings", "vector database", "FAISS", "chunking", "reranking", "hallucination reduction"],
+    "topic": "llm",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "What are embeddings in machine learning?",
+    "ideal_answer": "Embeddings: dense vector representations of data (text, images, audio) capturing semantic meaning. Similar items have similar vectors (high cosine similarity). Examples: Word2Vec, GloVe (word embeddings); sentence-transformers (sentence embeddings); CLIP (image-text). Dimensions: typically 100-1024. Used for: semantic search, recommendation, clustering, classification. Pre-trained models save training. Fine-tune for domain-specific tasks. Vector databases (FAISS, Pinecone) store and search billions efficiently. Foundation of RAG and modern NLP.",
+    "key_concepts": ["dense vectors", "semantic similarity", "sentence-transformers", "Word2Vec", "vector databases", "fine-tuning"],
+    "topic": "embeddings",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "Explain k-means clustering",
+    "ideal_answer": "Unsupervised algorithm partitioning data into K clusters. Steps: 1) Choose K, randomly initialize centroids. 2) Assign each point to nearest centroid (Euclidean distance). 3) Recompute centroids as mean of assigned points. 4) Repeat until convergence. Limitations: must specify K, sensitive to initialization (use k-means++), assumes spherical clusters, sensitive to outliers, struggles with varying density. Choose K via elbow method or silhouette score. Alternatives: hierarchical clustering, DBSCAN (density-based, no K needed).",
+    "key_concepts": ["unsupervised", "centroids", "elbow method", "silhouette score", "k-means++", "DBSCAN alternative"],
+    "topic": "clustering",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist", "data_analyst"]
+  },
+  {
+    "question": "What is PCA (Principal Component Analysis)?",
+    "ideal_answer": "PCA reduces dimensionality by projecting data onto directions of maximum variance (principal components). Steps: 1) Standardize features. 2) Compute covariance matrix. 3) Find eigenvectors/eigenvalues. 4) Top K eigenvectors are principal components. 5) Project data. Benefits: removes correlated features, reduces compute, visualization (2D/3D), denoising. Limitations: linear method (use t-SNE/UMAP for non-linear), loses interpretability (components are combinations), assumes variance = importance. Common in image compression, gene expression analysis.",
+    "key_concepts": ["dimensionality reduction", "eigenvectors", "variance", "t-SNE", "UMAP", "preprocessing"],
+    "topic": "ml fundamentals",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "Explain linear regression",
+    "ideal_answer": "Linear regression models linear relationship between features and continuous target: y = w₁x₁ + w₂x₂ + ... + b. Trained by minimizing mean squared error using ordinary least squares (closed-form) or gradient descent. Assumptions: linearity, independence, homoscedasticity (constant variance), normal residuals. Diagnostics: R² (variance explained), residual plots, p-values. Regularization variants: Ridge (L2), Lasso (L1, feature selection), Elastic Net. First model to try for regression. Use case: house prices, sales forecasting.",
+    "key_concepts": ["linear relationship", "MSE", "OLS", "R²", "ridge", "lasso", "assumptions"],
+    "topic": "ml fundamentals",
+    "difficulty": "easy",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist", "data_analyst"]
+  },
+  {
+    "question": "What is logistic regression?",
+    "ideal_answer": "Despite the name, used for binary classification. Applies sigmoid function to linear combination of features, outputting probability [0,1]. Decision boundary at 0.5 by default (tunable). Trained by minimizing log loss (binary cross-entropy). Coefficients interpretable as log-odds. Multinomial extension for multi-class. Pros: interpretable, fast, probabilistic output, well-calibrated. Cons: assumes linear decision boundary (use polynomial features for non-linear). Common baseline for classification before complex models.",
+    "key_concepts": ["sigmoid", "binary classification", "log loss", "log-odds", "decision boundary", "multinomial"],
+    "topic": "ml fundamentals",
+    "difficulty": "easy",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist", "data_analyst"]
+  },
+  {
+    "question": "Explain decision trees and random forests",
+    "ideal_answer": "Decision tree: hierarchical if-else splits learned from data, predicting target. Splits chosen to minimize impurity (Gini, entropy). Pros: interpretable, no scaling needed, handles mixed data types. Cons: prone to overfitting, unstable (small changes change tree). Random Forest: ensemble of decision trees trained on bootstrap samples with random feature subsets. Reduces overfitting via averaging. Handles missing values, gives feature importance. Industry workhorse for tabular data. XGBoost/LightGBM often outperform but harder to tune.",
+    "key_concepts": ["splits", "Gini impurity", "overfitting", "bootstrap sampling", "feature importance", "XGBoost"],
+    "topic": "ml fundamentals",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist", "data_analyst"]
+  },
+  {
+    "question": "What is hyperparameter tuning?",
+    "ideal_answer": "Hyperparameters configure learning algorithm (vs parameters which are learned). Examples: learning rate, tree depth, regularization strength, K in K-means. Tuning methods: Grid Search (exhaustive over predefined values, expensive), Random Search (random sampling, often more efficient), Bayesian Optimization (uses past results to guide search — Optuna, Hyperopt). Use cross-validation to evaluate. Watch for: data leakage from tuning on test set (use validation set), computational cost, diminishing returns. AutoML automates this.",
+    "key_concepts": ["grid search", "random search", "Bayesian optimization", "Optuna", "cross-validation", "AutoML"],
+    "topic": "ml practice",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "What is feature engineering?",
+    "ideal_answer": "Creating new features from raw data to improve model performance. Often more impactful than fancier algorithms. Techniques: domain knowledge features (date → day of week, weekend), aggregations (user's avg purchase), interactions (income/expenses), polynomial features, encoding (one-hot, label, target encoding), log transformations (skewed data), binning (continuous → categorical). Use cases: tabular data primarily. Deep learning learns features automatically (less needed for images/text). Trade-off: complexity vs performance. Feature stores (Feast) productionize features.",
+    "key_concepts": ["domain knowledge", "encoding", "interactions", "binning", "feature stores", "Feast"],
+    "topic": "ml practice",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist", "data_analyst"]
+  },
+  {
+    "question": "What is the curse of dimensionality?",
+    "ideal_answer": "As dimensions (features) increase, data becomes sparse, distances become less meaningful, and models need exponentially more data to generalize. Effects: distance-based algorithms (KNN) suffer, overfitting increases, computational cost grows. Mitigation: dimensionality reduction (PCA, t-SNE), feature selection (remove irrelevant features), regularization, more data, embedding learning for high-dim categorical. Modern deep learning handles high dims via learned representations. Visualization difficult beyond 3D.",
+    "key_concepts": ["high dimensions", "sparsity", "distance metrics", "PCA", "feature selection", "deep learning"],
+    "topic": "ml fundamentals",
+    "difficulty": "hard",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "Explain Apache Spark and its use cases",
+    "ideal_answer": "Apache Spark: distributed computing framework for big data. Faster than Hadoop MapReduce via in-memory computation. Components: Spark Core (RDDs), Spark SQL (DataFrames, SQL queries), Spark Streaming (real-time), MLlib (machine learning), GraphX (graphs). APIs in Python (PySpark), Scala, Java, R. Use cases: ETL on terabytes, large-scale ML, log analysis, real-time analytics. Lazy evaluation — transformations build DAG, actions trigger execution. Run on cluster managers: YARN, Kubernetes, Mesos, standalone.",
+    "key_concepts": ["distributed computing", "RDD", "DataFrame", "lazy evaluation", "PySpark", "MLlib"],
+    "topic": "big data",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["data_engineer", "data_scientist"]
+  },
+  {
+    "question": "What is Apache Airflow?",
+    "ideal_answer": "Workflow orchestration platform for scheduling and monitoring data pipelines. Pipelines defined as DAGs (Directed Acyclic Graphs) in Python — tasks with dependencies. Components: Web UI for monitoring, Scheduler triggers tasks, Workers execute, Metadata DB stores state. Operators wrap actions: PythonOperator, BashOperator, PostgresOperator, SparkSubmitOperator. Use cases: ETL pipelines, ML training pipelines, report generation. Alternatives: Prefect (more Pythonic), Dagster (asset-based), Argo Workflows (Kubernetes-native).",
+    "key_concepts": ["DAG", "operators", "scheduler", "task dependencies", "Prefect", "Dagster"],
+    "topic": "data orchestration",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["data_engineer"]
+  },
+  {
+    "question": "Explain Apache Kafka",
+    "ideal_answer": "Distributed event streaming platform. Producers write messages to topics, consumers read. Topics split into partitions for parallelism. Messages persist (configurable retention). Consumer groups share load. Use cases: event sourcing, log aggregation, real-time analytics, microservices communication, change data capture. Pros: high throughput, durability, replayability. Cons: operational complexity, eventual consistency. Alternatives: AWS Kinesis, Google Pub/Sub, RabbitMQ (different model). Kafka Streams for stream processing.",
+    "key_concepts": ["topics", "partitions", "consumer groups", "event streaming", "Kafka Streams", "throughput"],
+    "topic": "streaming",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["data_engineer", "backend"]
+  },
+  {
+    "question": "What is ETL vs ELT?",
+    "ideal_answer": "ETL (Extract, Transform, Load): transform data before loading to warehouse — clean, typed, ready to query. ELT (Extract, Load, Transform): load raw data first, transform in warehouse using SQL. ETL traditional approach (when storage expensive, compute cheap). ELT modern approach with cloud warehouses (Snowflake, BigQuery) — separates compute, lets you reprocess raw data anytime. dbt is popular for ELT transformations. ELT preserves raw data, more flexible. Choose based on warehouse capabilities, schema requirements.",
+    "key_concepts": ["ETL", "ELT", "data warehouse", "dbt", "Snowflake", "BigQuery"],
+    "topic": "data engineering",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["data_engineer", "data_analyst"]
+  },
+  {
+    "question": "What is a data warehouse vs data lake?",
+    "ideal_answer": "Data warehouse: structured, schema-on-write, optimized for analytics queries, expensive storage. Examples: Snowflake, BigQuery, Redshift. Data lake: raw data of any format, schema-on-read, cheap storage (S3), flexible. Examples: S3 + Athena, Delta Lake. Data warehouse for BI/dashboards. Data lake for data science, ML training, archives. Lakehouse (Delta Lake, Iceberg) combines benefits: cheap storage + ACID transactions + SQL queries. Modern architecture: lake for raw, warehouse for curated.",
+    "key_concepts": ["schema-on-write", "schema-on-read", "Snowflake", "Delta Lake", "Lakehouse", "S3"],
+    "topic": "data architecture",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["data_engineer"]
+  },
+  {
+    "question": "Explain A/B testing",
+    "ideal_answer": "Statistical experiment comparing two versions (A control, B variant) to determine which performs better. Process: 1) Hypothesis (e.g., new button increases conversions). 2) Randomly assign users to groups. 3) Collect data over sufficient sample size. 4) Statistical test (t-test, chi-square) for significance. 5) Decide based on p-value (commonly < 0.05). Pitfalls: peeking at results, multiple testing problem, segment effects, novelty effect, sample ratio mismatch. Use power analysis to determine sample size. Tools: Optimizely, Google Optimize, custom platforms.",
+    "key_concepts": ["hypothesis testing", "p-value", "statistical significance", "sample size", "power analysis", "pitfalls"],
+    "topic": "statistics",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["data_analyst", "data_scientist", "ml_engineer"]
+  },
+  {
+    "question": "What is hypothesis testing?",
+    "ideal_answer": "Statistical method to make decisions about populations from samples. Null hypothesis (H0): no effect/difference. Alternative (H1): effect exists. Calculate test statistic, find p-value (probability of observing data if H0 true). If p < α (commonly 0.05), reject H0. Types: t-test (compare means), chi-square (categorical), ANOVA (multiple groups), Mann-Whitney (non-parametric). Errors: Type I (false positive — reject true H0), Type II (false negative — fail to reject false H0). One-tailed vs two-tailed.",
+    "key_concepts": ["null hypothesis", "p-value", "significance level", "Type I/II errors", "t-test", "chi-square"],
+    "topic": "statistics",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["data_analyst", "data_scientist"]
+  },
+  {
+    "question": "Explain confidence intervals",
+    "ideal_answer": "Range of plausible values for a parameter (e.g., population mean) at a confidence level (commonly 95%). Means: if we repeated experiment many times, 95% of intervals would contain true parameter. Not: 95% probability true value is in this interval (Bayesian interpretation). Calculation: estimate ± (critical value × standard error). Wider CI = less precise (small sample, high variance). Bootstrap CIs for complex statistics. Used alongside hypothesis tests — overlapping CIs suggest no difference, but not always reliable.",
+    "key_concepts": ["confidence level", "standard error", "critical values", "bootstrap", "interpretation"],
+    "topic": "statistics",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["data_analyst", "data_scientist"]
+  },
+  {
+    "question": "What is the difference between correlation and causation?",
+    "ideal_answer": "Correlation: statistical association between variables (Pearson, Spearman). Causation: one variable influences another. Correlation doesn't imply causation — could be coincidence, confounding variable (Z affects both X and Y), reverse causation, or selection bias. To establish causation: randomized controlled experiments (gold standard), causal inference techniques (propensity scoring, instrumental variables, regression discontinuity), Granger causality for time series. Famous example: ice cream sales correlate with drownings (confound: temperature).",
+    "key_concepts": ["correlation coefficient", "confounding", "causal inference", "RCT", "Granger causality"],
+    "topic": "statistics",
+    "difficulty": "easy",
+    "domain": "data_science",
+    "roles": ["data_analyst", "data_scientist"]
+  },
+  {
+    "question": "What is pandas and why is it useful?",
+    "ideal_answer": "Python library for data manipulation and analysis. Core: Series (1D), DataFrame (2D table). Provides: SQL-like operations (filter, groupby, join, pivot), I/O (CSV, Excel, SQL, Parquet, JSON), time series support, missing data handling, statistical functions. Built on NumPy. Use for data cleaning, exploration, feature engineering. Performance: vectorized operations, avoid Python loops. For huge data: Polars (Rust-based, faster), Dask (parallel), PySpark. Critical skill for data roles.",
+    "key_concepts": ["DataFrame", "Series", "vectorization", "groupby", "Polars", "Dask"],
+    "topic": "python data",
+    "difficulty": "easy",
+    "domain": "data_science",
+    "roles": ["data_analyst", "data_scientist", "ml_engineer", "data_engineer"]
+  },
+  {
+    "question": "Explain MLOps and its importance",
+    "ideal_answer": "MLOps: DevOps for machine learning — practices for deploying, monitoring, maintaining ML models in production. Components: version control for code and data (DVC), experiment tracking (MLflow, Weights & Biases), model registry, automated training/retraining pipelines, deployment (FastAPI, KServe, SageMaker), monitoring (data drift, model drift, performance degradation), feedback loops. Importance: 87% of ML projects fail to reach production. MLOps bridges experimentation and production reality. Practices: CI/CD for ML, A/B testing models, canary deployments.",
+    "key_concepts": ["model deployment", "MLflow", "data drift", "monitoring", "DVC", "experiment tracking"],
+    "topic": "mlops",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist", "devops"]
+  },
+  {
+    "question": "What is fine-tuning vs prompt engineering for LLMs?",
+    "ideal_answer": "Fine-tuning: further train pre-trained model on domain-specific data, modifying weights. Expensive (GPUs needed), permanent changes. Use for: specialized tasks, domain language, behavior modification. Methods: full fine-tuning, LoRA (efficient adapter layers), QLoRA (quantized). Prompt engineering: craft input to steer LLM behavior without changing model. Cheap, flexible, immediate. Use for: most cases initially. RAG combines: retrieve context + prompt engineer. Order of preference: prompt eng → RAG → fine-tuning. Many tasks solvable with good prompting.",
+    "key_concepts": ["fine-tuning", "LoRA", "QLoRA", "prompt engineering", "RAG", "trade-offs"],
+    "topic": "llm",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "What are vector databases?",
+    "ideal_answer": "Specialized databases for storing and searching high-dimensional vectors (embeddings). Use approximate nearest neighbor (ANN) algorithms — HNSW, IVF, LSH — for fast similarity search at scale. Examples: FAISS (Meta, in-memory library), Pinecone (managed), Weaviate (open source), Milvus, Qdrant, ChromaDB. Compared to traditional DBs: exact search not feasible for vectors at scale. Use cases: RAG, semantic search, recommendation systems, image/video search, deduplication. Key metrics: recall (accuracy) vs latency vs throughput. Hybrid search combines vector + keyword.",
+    "key_concepts": ["ANN", "FAISS", "Pinecone", "HNSW", "semantic search", "RAG"],
+    "topic": "vector databases",
+    "difficulty": "medium",
+    "domain": "data_science",
+    "roles": ["ml_engineer", "data_scientist"]
+  },
+  {
+    "question": "Explain Docker containers vs virtual machines",
+    "ideal_answer": "VMs: virtualize hardware, run separate OS, isolated but heavy (GBs, minutes to start). Examples: VMware, VirtualBox. Containers: virtualize OS, share host kernel, lightweight (MBs, seconds to start). Use Linux namespaces and cgroups for isolation. Examples: Docker, Podman. Containers more efficient, faster, portable. VMs better for: running different OS than host, stronger isolation (security), legacy apps. Modern: containers for stateless services, VMs for hypervisor-level isolation. Kubernetes orchestrates containers at scale.",
+    "key_concepts": ["containers", "VMs", "namespaces", "cgroups", "isolation", "performance"],
+    "topic": "devops",
+    "difficulty": "easy",
+    "domain": "devops",
+    "roles": ["devops", "backend", "fullstack"]
+  },
+  {
+    "question": "What is Kubernetes and why use it?",
+    "ideal_answer": "Container orchestration platform from Google. Manages container lifecycle: deployment, scaling, rolling updates, self-healing (restart failed pods), service discovery, load balancing. Core concepts: Pods (smallest unit, 1+ containers), Deployments (manage Pod replicas), Services (network access), Ingress (HTTP routing), ConfigMaps, Secrets, Volumes. Use when: many microservices, need auto-scaling, deploying across multi-cloud. Cons: operational complexity, learning curve, overhead. Alternatives: simpler PaaS (Heroku, Vercel) for small apps, ECS/Cloud Run for managed.",
+    "key_concepts": ["Pods", "Deployments", "Services", "Ingress", "auto-scaling", "self-healing"],
+    "topic": "kubernetes",
+    "difficulty": "medium",
+    "domain": "devops",
+    "roles": ["devops", "sre", "cloud_engineer"]
+  },
+  {
+    "question": "Explain CI/CD pipelines",
+    "ideal_answer": "CI (Continuous Integration): frequently merge code with automated testing. CD (Continuous Delivery/Deployment): automated release to staging (delivery) or production (deployment). Pipeline stages: source (git trigger), build (compile, package, container image), test (unit, integration, E2E), security scan, deploy. Tools: GitHub Actions, GitLab CI, Jenkins, CircleCI. Benefits: faster releases, less risk, automated quality checks, faster feedback. Best practices: fast pipelines (<10 min ideal), parallel jobs, environment promotion, automated rollbacks.",
+    "key_concepts": ["pipeline stages", "GitHub Actions", "automated testing", "deployment", "rollback", "environment promotion"],
+    "topic": "ci/cd",
+    "difficulty": "medium",
+    "domain": "devops",
+    "roles": ["devops", "fullstack", "sre"]
+  },
+  {
+    "question": "What is Infrastructure as Code (IaC)?",
+    "ideal_answer": "Managing infrastructure (servers, networks, databases) via code instead of manual config. Tools: Terraform (declarative, multi-cloud), CloudFormation (AWS-native), Pulumi (programming languages), Ansible (configuration management, also IaC). Benefits: version control, reproducible environments, code reviews, fast disaster recovery, environment parity. Patterns: modules for reusability, state management (remote backends), workspaces for environments. Best practices: small modules, plan before apply, no secrets in code, automated drift detection.",
+    "key_concepts": ["Terraform", "CloudFormation", "declarative", "version control", "state management", "modules"],
+    "topic": "iac",
+    "difficulty": "medium",
+    "domain": "devops",
+    "roles": ["devops", "cloud_engineer", "sre"]
+  },
+  {
+    "question": "Explain AWS S3 and common use cases",
+    "ideal_answer": "Object storage service: virtually unlimited storage of files (objects) in buckets. Each object has key, data, metadata. Storage classes: Standard (frequent access), Infrequent Access (cheaper, retrieval fee), Glacier (archive, hours retrieval). Use cases: static website hosting, backups, data lake, media storage, CDN origin. Features: versioning, encryption (SSE-S3, SSE-KMS), lifecycle policies (auto-transition to cheaper storage), event triggers (Lambda), presigned URLs (temporary access), replication. Practically used in nearly every AWS architecture.",
+    "key_concepts": ["object storage", "storage classes", "versioning", "presigned URLs", "lifecycle policies", "Glacier"],
+    "topic": "aws",
+    "difficulty": "easy",
+    "domain": "devops",
+    "roles": ["devops", "cloud_engineer", "backend"]
+  },
+  {
+    "question": "What is AWS Lambda and serverless?",
+    "ideal_answer": "Lambda: run code without managing servers — provide function, AWS handles infrastructure. Triggers: API Gateway, S3 events, EventBridge, SQS. Pay per invocation + duration. Cold starts: latency on first call. Limits: 15-min runtime, 10GB memory. Use cases: event-driven processing, APIs, scheduled tasks, light workloads. Serverless extends to: SNS, SQS, DynamoDB, Step Functions. Frameworks: Serverless Framework, AWS SAM, CDK. Trade-offs: vendor lock-in, debugging complexity, cold starts. Cost-efficient at low/spiky traffic.",
+    "key_concepts": ["FaaS", "cold starts", "event-driven", "serverless framework", "vendor lock-in", "pricing"],
+    "topic": "aws",
+    "difficulty": "medium",
+    "domain": "devops",
+    "roles": ["devops", "cloud_engineer", "backend"]
+  },
+  {
+    "question": "What is monitoring vs observability?",
+    "ideal_answer": "Monitoring: checking known metrics for known problems (CPU, memory, request rate). Tools: Prometheus, Grafana, CloudWatch. Observability: understanding internal state from external outputs, including unknown problems. Three pillars: logs (events), metrics (numbers over time), traces (request flow across services). Tools: Datadog, New Relic, Honeycomb, OpenTelemetry (vendor-neutral). Modern systems need both: monitor for alerts, observe for debugging. SLO/SLI/error budgets quantify reliability targets.",
+    "key_concepts": ["logs", "metrics", "traces", "OpenTelemetry", "SLO/SLI", "Prometheus", "Datadog"],
+    "topic": "observability",
+    "difficulty": "medium",
+    "domain": "devops",
+    "roles": ["devops", "sre", "backend"]
+  },
+  {
+    "question": "Explain Prometheus and Grafana",
+    "ideal_answer": "Prometheus: open-source time-series database for metrics. Pulls metrics from instrumented services via HTTP endpoint (/metrics). PromQL query language. Alerting via AlertManager. Service discovery for dynamic environments (Kubernetes). Grafana: visualization platform. Connects to Prometheus and other sources. Dashboards with panels (graphs, tables, alerts). Both common together in cloud-native stacks. Alternative: Datadog (managed), Victoria Metrics (Prometheus-compatible, more scalable), CloudWatch (AWS native).",
+    "key_concepts": ["time-series DB", "pull model", "PromQL", "AlertManager", "dashboards", "service discovery"],
+    "topic": "monitoring",
+    "difficulty": "medium",
+    "domain": "devops",
+    "roles": ["devops", "sre"]
+  },
+  {
+    "question": "What is GitOps?",
+    "ideal_answer": "Operational pattern: Git as single source of truth for infrastructure and applications. Workflow: changes made via Git PRs, automated agents (ArgoCD, Flux) sync Git state to actual cluster. Benefits: audit trail, easy rollback (git revert), code review for infrastructure, declarative state. Pull-based vs traditional push-based deployment. Tools: ArgoCD (Kubernetes-focused), Flux (CNCF), Jenkins X. Combine with Helm/Kustomize for K8s manifests. Cultural shift: developers manage infrastructure through Git.",
+    "key_concepts": ["Git as source of truth", "ArgoCD", "Flux", "pull-based", "declarative", "automated sync"],
+    "topic": "gitops",
+    "difficulty": "medium",
+    "domain": "devops",
+    "roles": ["devops", "sre"]
+  },
+  {
+    "question": "What is a service mesh?",
+    "ideal_answer": "Infrastructure layer handling service-to-service communication in microservices. Provides: load balancing, service discovery, mutual TLS (encryption + auth), retries, circuit breaking, observability — all without changing application code. Implementation: sidecar proxy (Envoy) injected next to each service. Tools: Istio (full-featured), Linkerd (simpler), Cilium (eBPF-based). Trade-offs: adds latency, operational complexity, debugging difficulty. Use when: many services, complex traffic patterns. Often overkill for small systems — simple API gateway sufficient.",
+    "key_concepts": ["Istio", "Linkerd", "sidecar proxy", "Envoy", "mTLS", "circuit breaking"],
+    "topic": "microservices",
+    "difficulty": "hard",
+    "domain": "devops",
+    "roles": ["devops", "sre"]
+  },
+  {
+    "question": "What is the SLO, SLI, SLA framework?",
+    "ideal_answer": "SLI (Service Level Indicator): measurable metric (e.g., latency, error rate, availability). SLO (Service Level Objective): target value for SLI (e.g., 99.9% requests under 100ms). SLA (Service Level Agreement): contractual obligation with consequences (refunds if missed) — usually less strict than SLO. Error budget: 1 - SLO (e.g., 0.1% = 43 min/month downtime). Use it for: balancing reliability vs feature velocity. Concept from Google SRE book. Don't over-engineer for unnecessary reliability.",
+    "key_concepts": ["SLI", "SLO", "SLA", "error budget", "availability", "Google SRE"],
+    "topic": "sre",
+    "difficulty": "medium",
+    "domain": "devops",
+    "roles": ["sre", "devops"]
+  },
+  {
+    "question": "What is chaos engineering?",
+    "ideal_answer": "Discipline of experimenting on production systems to build confidence in their ability to withstand turbulent conditions. Originated at Netflix (Chaos Monkey). Process: form hypothesis (system continues under X failure), design experiment, run in production with limited blast radius, observe, learn, fix issues. Examples: kill random instances, inject latency, fill disks, terminate network. Tools: Chaos Monkey, Gremlin, AWS FIS. Required for: distributed systems where failures are inevitable. Start in staging, build confidence to production.",
+    "key_concepts": ["Chaos Monkey", "Gremlin", "blast radius", "hypothesis-driven", "production testing", "resilience"],
+    "topic": "sre",
+    "difficulty": "hard",
+    "domain": "devops",
+    "roles": ["sre", "devops"]
+  },
+  {
+    "question": "What is the OWASP Top 10?",
+    "ideal_answer": "OWASP (Open Web Application Security Project) ranks most critical web app security risks. 2021 list includes: A01 Broken Access Control (most common), A02 Cryptographic Failures, A03 Injection (SQL, XSS), A04 Insecure Design, A05 Security Misconfiguration, A06 Vulnerable Components, A07 Identification/Auth Failures, A08 Software and Data Integrity Failures, A09 Logging/Monitoring Failures, A10 Server-Side Request Forgery (SSRF). Standard reference for security training, audits, and prioritization. Updated every few years.",
+    "key_concepts": ["broken access control", "injection", "cryptographic failures", "security misconfig", "SSRF", "security best practices"],
+    "topic": "web security",
+    "difficulty": "medium",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "backend", "fullstack"]
+  },
+  {
+    "question": "Explain symmetric vs asymmetric encryption",
+    "ideal_answer": "Symmetric: same key encrypts and decrypts. Fast, used for bulk data. Examples: AES (current standard), ChaCha20. Challenge: securely sharing the key. Asymmetric (public-key): different keys for encryption and decryption. Slow, used for key exchange and signatures. Examples: RSA (factoring), ECDSA, Ed25519 (elliptic curves). Public key shareable, private key secret. TLS uses both: asymmetric for handshake/key exchange, symmetric for actual data transfer. Hashing (SHA-256, bcrypt, Argon2) is one-way and different.",
+    "key_concepts": ["AES", "RSA", "elliptic curves", "TLS handshake", "key exchange", "hashing"],
+    "topic": "cryptography",
+    "difficulty": "medium",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "backend"]
+  },
+  {
+    "question": "What is the difference between hashing and encryption?",
+    "ideal_answer": "Encryption: reversible — can decrypt back to original with key. Used for: protecting data in transit/at rest. Examples: AES, RSA. Hashing: one-way — cannot reverse to original. Used for: password storage, integrity verification, deduplication. Properties: deterministic, fixed output size, avalanche effect (small change → big difference). Examples: SHA-256, SHA-3, bcrypt, Argon2 (designed for passwords with salt). Never use general hashes (MD5, SHA-1) for passwords — use Argon2/bcrypt/scrypt with built-in salting and slow computation.",
+    "key_concepts": ["reversibility", "Argon2", "bcrypt", "SHA-256", "salt", "deterministic"],
+    "topic": "cryptography",
+    "difficulty": "easy",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "backend"]
+  },
+  {
+    "question": "Explain TLS/SSL handshake",
+    "ideal_answer": "TLS handshake establishes secure connection. Simplified: 1) Client hello (supported ciphers, random number). 2) Server hello (chosen cipher, random number, certificate with public key). 3) Client verifies certificate via CA chain, generates pre-master secret, encrypts with server's public key, sends. 4) Both derive symmetric session key from random numbers and pre-master secret. 5) Subsequent communication uses symmetric encryption (much faster). TLS 1.3 simplified this to 1-RTT (round-trip time). Provides: confidentiality, integrity, server authentication (and optionally client).",
+    "key_concepts": ["certificate verification", "key exchange", "session keys", "CA chain", "TLS 1.3", "1-RTT"],
+    "topic": "network security",
+    "difficulty": "hard",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "backend", "devops"]
+  },
+  {
+    "question": "What is OAuth 2.0 vs OpenID Connect?",
+    "ideal_answer": "OAuth 2.0: authorization framework — granting access to resources without sharing credentials. About 'what can this app do on my behalf'. OpenID Connect (OIDC): identity layer on top of OAuth 2.0 — adds authentication ('who is this user'). OIDC returns ID Token (JWT with user info) alongside access token. Use OAuth for: third-party app authorization (post to Twitter on my behalf). Use OIDC for: SSO, 'Login with Google'. Often confused — OAuth alone isn't authentication. Implementations: Auth0, Okta, AWS Cognito, Keycloak.",
+    "key_concepts": ["authorization vs authentication", "ID token", "access token", "SSO", "Auth0", "Keycloak"],
+    "topic": "auth",
+    "difficulty": "medium",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "backend", "fullstack"]
+  },
+  {
+    "question": "What is a firewall and types of firewalls?",
+    "ideal_answer": "Firewall filters network traffic based on rules. Types: Packet-filtering (stateless, basic) — examines individual packets. Stateful (most common) — tracks connection state. Application-layer (Layer 7) — understands HTTP/SMTP/etc., used for WAFs. Next-generation firewalls (NGFW): include intrusion prevention, deep packet inspection, malware detection. Network firewall vs Web Application Firewall (WAF): WAF specifically for web apps (SQL injection, XSS). Cloud: AWS Security Groups, NACLs, WAF. Defense in depth: multiple firewall layers.",
+    "key_concepts": ["packet filtering", "stateful inspection", "WAF", "NGFW", "Security Groups", "defense in depth"],
+    "topic": "network security",
+    "difficulty": "easy",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "devops"]
+  },
+  {
+    "question": "Explain zero trust architecture",
+    "ideal_answer": "Security model: 'never trust, always verify'. Traditional: trust everything inside network perimeter. Zero trust: no implicit trust based on location. Principles: verify explicitly (every request), least privilege access, assume breach. Implementation: identity-based access (instead of IP-based), continuous authentication, micro-segmentation, encrypted everything, monitor all access. BeyondCorp (Google) pioneered. Tools: Cloudflare Access, Tailscale, Twingate. Increasingly important with remote work, cloud, BYOD eroding traditional perimeter.",
+    "key_concepts": ["never trust always verify", "least privilege", "micro-segmentation", "BeyondCorp", "identity-based"],
+    "topic": "security architecture",
+    "difficulty": "hard",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "devops"]
+  },
+  {
+    "question": "What is penetration testing?",
+    "ideal_answer": "Authorized simulated cyberattack to evaluate security. Phases: 1) Planning and reconnaissance, 2) Scanning (Nmap, vulnerability scanners), 3) Gaining access (exploit vulnerabilities), 4) Maintaining access, 5) Analysis and reporting. Types: Black box (no info given), White box (full info), Gray box (some info). Categories: external, internal, web app, mobile, social engineering, physical. Frameworks: PTES, OWASP Testing Guide. Tools: Burp Suite, Metasploit, Nmap, Wireshark. Different from bug bounty (continuous, crowdsourced) and red team (longer-term, undetected).",
+    "key_concepts": ["reconnaissance", "exploitation", "Burp Suite", "Metasploit", "black/white/gray box", "PTES"],
+    "topic": "offensive security",
+    "difficulty": "medium",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "security_analyst"]
+  },
+  {
+    "question": "What is DDoS and how to mitigate?",
+    "ideal_answer": "DDoS (Distributed Denial of Service): overwhelm service with traffic from many sources, making it unavailable. Types: Volume (bandwidth), Protocol (TCP SYN floods), Application (HTTP floods, Slowloris). Mitigation layers: CDN/Cloudflare (absorbs attacks at edge), rate limiting, IP blocking, traffic scrubbing services (Akamai, AWS Shield), WAF rules, auto-scaling (with cost monitoring), Anycast routing (distributes load). Detect: traffic anomalies, error rates. Modern attacks: amplification (DNS, NTP), application-layer harder to detect.",
+    "key_concepts": ["volumetric", "amplification", "Cloudflare", "AWS Shield", "rate limiting", "Anycast"],
+    "topic": "network security",
+    "difficulty": "medium",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "devops"]
+  },
+  {
+    "question": "What is GDPR and key compliance requirements?",
+    "ideal_answer": "EU regulation protecting personal data of EU residents. Applies to any org handling EU user data. Key principles: lawfulness (legal basis required), purpose limitation, data minimization, accuracy, storage limitation, security, accountability. User rights: access, rectification, erasure ('right to be forgotten'), portability, restriction, objection. Requirements: privacy by design, breach notification (72 hours), DPO if scale requires, DPIA for high-risk processing, consent must be specific and revocable. Fines up to 4% global revenue. Similar laws: CCPA (California), LGPD (Brazil).",
+    "key_concepts": ["personal data", "consent", "right to erasure", "data breach notification", "privacy by design", "DPO"],
+    "topic": "compliance",
+    "difficulty": "medium",
+    "domain": "cybersecurity",
+    "roles": ["security_engineer", "backend"]
+  },
+  {
+    "question": "Tell me about yourself",
+    "ideal_answer": "Use the present-past-future structure: brief background, current role/achievements relevant to the position, future aspirations aligning with this role. Keep it 1-2 minutes focused on professional journey. Example: 'I'm a full-stack developer with 3 years of experience building scalable web applications. Currently at [company] where I led the migration to microservices architecture, improving deployment speed by 60%. Looking to grow into a senior engineering role where I can contribute to AI/ML products, which aligns with what your team is building.' Avoid personal life details unless asked.",
+    "key_concepts": ["present-past-future", "relevance to role", "concise", "specific achievements", "forward-looking"],
+    "topic": "behavioral",
+    "difficulty": "easy",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "What are your greatest strengths?",
+    "ideal_answer": "Choose 2-3 strengths with concrete examples. Pick strengths relevant to the role. Example: 'My greatest strengths are problem decomposition and learning agility. When faced with our payment system's reliability issue, I systematically broke it down — identified that 80% of failures came from one specific edge case in webhook handling. I quickly learned the third-party API documentation and implemented a fix in two days that reduced failed transactions by 95%. I also stay current with industry trends — recently completed an LLM systems course to apply RAG patterns to our internal docs search.' Avoid clichés like 'I'm a perfectionist'.",
+    "key_concepts": ["specific examples", "relevant strengths", "concrete impact", "learning mindset", "STAR format"],
+    "topic": "behavioral",
+    "difficulty": "easy",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "What is your greatest weakness?",
+    "ideal_answer": "Choose a real weakness you're actively improving — avoid 'I work too hard'. Show self-awareness and growth. Example: 'My weakness has been over-engineering solutions. Early in my career, I'd build elaborate abstractions for problems that didn't need them, slowing down delivery. I've worked on this by adopting YAGNI (You Aren't Gonna Need It) principle, starting with simpler solutions, and only refactoring when patterns emerge from real requirements. My team's recent feedback was that my code is now appropriately simple while remaining extensible. I still consciously check myself when designing systems.' Demonstrate concrete improvement steps and results.",
+    "key_concepts": ["self-awareness", "real weakness", "active improvement", "concrete steps", "results"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "Why do you want to work here?",
+    "ideal_answer": "Research the company beforehand. Connect their mission/products/tech/culture to your interests. Be specific. Example: 'Three things attract me to [Company]. First, your work on [specific product/initiative] aligns with my passion for solving [problem domain]. Second, your engineering blog posts about [specific technical practice] show a culture of technical excellence I want to be part of. Third, the team structure you described — small autonomous teams owning products end-to-end — matches how I work best. Plus, [specific person]'s recent talk on [topic] convinced me of the team's depth.' Avoid generic answers like 'great company culture'.",
+    "key_concepts": ["specific research", "company alignment", "tech stack interest", "team structure", "specific names/products"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "Where do you see yourself in 5 years?",
+    "ideal_answer": "Show ambition aligned with realistic growth at this company. Avoid 'in your job' (threatening) or 'I don't know' (unmotivated). Example: 'In five years, I want to be a senior engineer who can architect complex systems and mentor others. I see myself going deep in [specific technical area like distributed systems / ML platforms] while also developing my leadership skills — perhaps as a tech lead. I'd like to be the person teams come to for solving difficult problems. This role offers exactly the right challenges and learning environment to build toward that.' Tie to the company's growth opportunities.",
+    "key_concepts": ["ambition", "realistic growth", "technical depth", "leadership", "company alignment"],
+    "topic": "behavioral",
+    "difficulty": "easy",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "Why are you leaving your current job?",
+    "ideal_answer": "Be positive — never bash former employer. Focus on what's pulling you toward the new role, not pushing you away. Example: 'I've grown significantly in my current role over the past 3 years — I learned [specific skills] and led [specific projects]. However, the next stage of my growth requires exposure to [specific challenge: bigger scale / new domain / leadership / different tech]. Your role offers exactly that. My current company is good, but they're focused on [different area] which limits the growth opportunities in my chosen direction.' Even if leaving for negative reasons, frame around positive next steps.",
+    "key_concepts": ["positive framing", "growth focus", "specific reasons", "no badmouthing", "next steps"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "Describe a time you failed",
+    "ideal_answer": "Choose a real failure showing reflection and growth — not too damaging, not trivial. STAR format. Example: 'In my previous role, I led the migration to a new caching layer. I underestimated the complexity of stale data issues and didn't build sufficient monitoring. Two weeks after launch, we discovered users seeing outdated data for hours. We had to roll back, costing two weeks of work. From this I learned: (1) always build observability before deploying critical infrastructure, (2) phased rollouts with monitoring, (3) consult engineers with deeper expertise upfront. My next migration was successful, with comprehensive monitoring and gradual rollout.' Demonstrate self-awareness, lessons learned, and applied changes.",
+    "key_concepts": ["real failure", "STAR format", "self-reflection", "specific lessons", "applied learnings"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "Describe a time you handled conflict with a coworker",
+    "ideal_answer": "Show professional conflict resolution. STAR format. Example: 'A senior engineer and I disagreed on the database design for a new feature. They wanted denormalized for performance; I wanted normalized for data integrity. The disagreement was blocking sprint planning. I scheduled a 1:1 to understand their concerns deeply. They were worried about query performance based on a past incident. I proposed a compromise: start normalized with specific indexes, benchmark, and denormalize specific hot paths if needed. We agreed, implemented it, and the design has worked well for 18 months. I learned: seek to understand the underlying concern, not just the position.' Show empathy, active listening, and compromise.",
+    "key_concepts": ["active listening", "STAR format", "empathy", "compromise", "underlying concerns"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "Tell me about a time you had to learn something quickly",
+    "ideal_answer": "Show learning agility and self-direction. STAR format. Example: 'When my team adopted Kubernetes, I had no prior experience but needed to deploy a critical service in three weeks. I created a structured learning plan: official docs in week 1, hands-on labs in week 2, real implementation in week 3. I also identified two team members with expertise and scheduled 30-minute sessions weekly to validate my understanding. I deployed the service on time with proper monitoring and documentation. I've used this same approach to learn React, GraphQL, and recently LLMs — break it down, hands-on practice, validate with experts.' Demonstrate a repeatable learning system.",
+    "key_concepts": ["structured learning", "STAR format", "self-direction", "expert consultation", "repeatable system"],
+    "topic": "behavioral",
+    "difficulty": "easy",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "How do you handle tight deadlines?",
+    "ideal_answer": "Show prioritization, communication, and quality awareness. Example: 'I follow a few principles. First, identify the MVP — what's the minimum that delivers value. Cut nice-to-haves ruthlessly. Second, communicate early — if I see a risk to deadline, I raise it immediately with options. Third, get help — pair program on hard parts, delegate where possible. Fourth, never sacrifice on tests for critical paths — tech debt from skipped tests costs more later. For example, our team had a 2-week deadline for a feature originally scoped for 4. I led scoping it down to core flows, communicated trade-offs to stakeholders, and we shipped on time with the must-haves and a clear backlog for the rest.'",
+    "key_concepts": ["MVP thinking", "early communication", "prioritization", "no quality sacrifice", "specific example"],
+    "topic": "behavioral",
+    "difficulty": "easy",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "What questions do you have for us?",
+    "ideal_answer": "Always have prepared, thoughtful questions — never 'no questions'. Good questions show research and engagement. Examples: (1) Team and culture: 'How does the team handle technical decisions — top-down or collaborative?' (2) Growth: 'What does career growth look like for someone in this role?' (3) Challenges: 'What's the biggest technical challenge the team is facing right now?' (4) Success: 'In 6 months, what would success look like for this position?' (5) Process: 'How does the team balance shipping features with addressing technical debt?' Avoid asking what's clearly on website. Tailor questions to the interviewer's role.",
+    "key_concepts": ["prepared questions", "team culture", "growth opportunities", "tailored to interviewer", "engagement signal"],
+    "topic": "behavioral",
+    "difficulty": "easy",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "What are your salary expectations?",
+    "ideal_answer": "Research market rates first (Glassdoor, levels.fyi, Blind). Provide a range based on research, not a single number. Example: 'Based on my research of comparable roles in this market and my experience with [relevant skills], I'm targeting the [X-Y] range. However, I'm open to discussing the full compensation package including equity, benefits, and growth opportunities. What's the budgeted range for this role?' Always tie expectations to research. Try to get them to share their range first if possible. Don't undersell yourself — negotiate from a position of knowledge.",
+    "key_concepts": ["market research", "range not number", "total compensation", "negotiation", "levels.fyi"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "Describe a time you took initiative",
+    "ideal_answer": "Show proactivity beyond assigned work. STAR format. Example: 'I noticed our deployment process took 45 minutes per release, causing frequent context switches and missed deployments. Nobody had asked me to fix it — I owned a feature team, not infrastructure. I prototyped a faster pipeline using parallelized stages and pre-built Docker images. Showed the team a 10-minute deployment proof of concept. Got buy-in, then refined it with the DevOps team. Result: deployment time dropped from 45 to 8 minutes, releases per week tripled. The pattern was adopted by other teams. I learned that solving cross-cutting problems creates outsized impact.'",
+    "key_concepts": ["proactivity", "STAR format", "beyond assigned work", "measurable impact", "cross-team influence"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "How do you mentor junior developers?",
+    "ideal_answer": "Show patience, structure, and growth orientation. Example: 'I mentor based on the person and topic. For new hires, I pair-program on their first features to demonstrate codebase patterns. I prefer questions over answers — asking 'what do you think happens here?' builds their reasoning. I do code reviews as teaching moments — explain why, not just what to change. I set up regular 1:1s focused on their growth, not just tasks. I share resources tailored to their gaps: courses, articles, conference talks. Most importantly, I create safety to ask 'stupid' questions. My current mentee shipped their first major feature solo last month. Mentoring also keeps me learning — explaining sharpens understanding.'",
+    "key_concepts": ["pair programming", "questions over answers", "code review teaching", "personalized growth", "psychological safety"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "Describe a project you led from start to finish",
+    "ideal_answer": "Show ownership, planning, execution, and learning. STAR format. Example: 'I led the migration from monolith to microservices for our user management system. Started by aligning with product on goals — independent deployments and team autonomy. Designed the architecture with input from 3 senior engineers. Created a 6-week rollout plan with weekly milestones. Coordinated with 4 teams whose services depended on user data. Set up shared infrastructure: API gateway, service mesh, centralized auth. Conducted weekly demos to stakeholders. We launched on time, achieved 80% reduction in cross-team deployment dependencies. Post-launch retrospective identified 3 improvements for next migration. I learned the importance of stakeholder communication — half the work was alignment, not code.'",
+    "key_concepts": ["ownership", "planning", "stakeholder alignment", "execution", "post-mortem", "specific outcomes"],
+    "topic": "behavioral",
+    "difficulty": "medium",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "How do you give and receive feedback?",
+    "ideal_answer": "Show emotional intelligence and growth mindset. Example: 'When giving feedback, I use specific examples and focus on behavior, not personality. I follow SBI: Situation, Behavior, Impact. I give it timely — not weeks after the fact. I balance positive and constructive — recognizing good work makes corrective feedback land better. When receiving, I assume positive intent, ask clarifying questions, and acknowledge the feedback. I separate the message from my ego — feedback is data, not judgment. I follow up by demonstrating change. My manager once said my PRs were missing context — I now write detailed PR descriptions, and reviews are 50% faster. Both giving and receiving feedback well are core to team trust.'",
+    "key_concepts": ["SBI framework", "specific examples", "growth mindset", "psychological safety", "demonstrated change"],
+    "topic": "behavioral",
+    "difficulty": "easy",
+    "domain": "behavioral",
+    "roles": ["frontend", "backend", "fullstack", "devops", "data_scientist", "ml_engineer", "mobile", "security_engineer"]
+  },
+  {
+    "question": "What is React Native and how does it work?",
+    "ideal_answer": "React Native: framework for building mobile apps with JavaScript/TypeScript and React. Compiles to native UI components (not WebView) using a JavaScript-to-native bridge. Architecture: JS thread runs React, native threads handle UI. Components map to native equivalents (View → UIView/ViewGroup). New architecture (Fabric) replaces bridge with JSI (JavaScript Interface) for synchronous calls and better performance. Use for cross-platform mobile with code sharing 70-90% between iOS/Android. Trade-offs vs native: slower platform-specific features, performance overhead, larger app size.",
+    "key_concepts": ["bridge", "JSI", "Fabric", "native components", "cross-platform", "performance"],
+    "topic": "react native",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["mobile", "fullstack"]
+  },
+  {
+    "question": "What is Flutter and how does it differ from React Native?",
+    "ideal_answer": "Flutter: Google's UI framework using Dart language. Draws own UI via Skia engine — no native components, ensuring consistent look across platforms. Hot reload for fast development. React Native uses native components via bridge. Flutter pros: consistent UI, single rendering engine, better performance (no bridge), strong tooling. RN pros: JavaScript ecosystem, mature OSS, looks native by default, larger community. Dart faster than JavaScript. Flutter better for design-heavy apps with custom UI; RN for teams with web/React background.",
+    "key_concepts": ["Skia engine", "Dart", "no bridge", "consistent UI", "hot reload", "trade-offs"],
+    "topic": "flutter",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["mobile", "fullstack"]
+  },
+  {
+    "question": "How do you handle navigation in React Native?",
+    "ideal_answer": "Primary library: React Navigation. Types: Stack Navigator (push/pop screens), Tab Navigator (bottom tabs), Drawer Navigator (side menu), Modal. Configure in navigation container at app root. Pass params between screens via navigation.navigate('Screen', { id }). Deep linking for URL → screen mapping. Native stack (uses native navigation primitives) for better performance than JS stack. Authentication flow: conditional navigators based on auth state. Type-safe with TypeScript generics. Alternative: react-native-navigation (Wix) for fully native navigation.",
+    "key_concepts": ["React Navigation", "Stack Navigator", "deep linking", "TypeScript types", "auth flow"],
+    "topic": "react native",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["mobile", "fullstack"]
+  },
+  {
+    "question": "Explain mobile push notifications",
+    "ideal_answer": "Server sends notification to platform service (FCM for Android, APNs for iOS) which delivers to device. Components: 1) Device registers, gets unique token, sends to your server. 2) Server stores tokens per user. 3) Server sends payload to FCM/APNs. 4) Platform delivers to device. 5) App handles foreground/background/killed states differently. iOS needs explicit user permission (since iOS 12, optional on Android). Payloads: alert (visible), data-only (silent). Services: Firebase Cloud Messaging is most common; OneSignal, Pusher for managed. Best practice: rich notifications with images, actions; don't spam users.",
+    "key_concepts": ["FCM", "APNs", "device tokens", "permissions", "background handling", "OneSignal"],
+    "topic": "mobile",
+    "difficulty": "medium",
+    "domain": "software_engineering",
+    "roles": ["mobile", "backend"]
+  },
+  {
+    "question": "What is offline-first design for mobile apps?",
+    "ideal_answer": "Design assuming network may be unavailable. Strategies: 1) Cache aggressively with stale-while-revalidate. 2) Local DB (SQLite, Realm, AsyncStorage for small data) as source of truth. 3) Queue actions when offline, sync when online. 4) Optimistic UI updates — show changes immediately, reconcile later. 5) Conflict resolution strategy (last-write-wins, custom merge). 6) Background sync. Libraries: WatermelonDB, RxDB, PowerSync. Considerations: data freshness vs offline capability, conflict resolution, sync indicators in UI. Critical for mobile UX in areas with poor connectivity.",
+    "key_concepts": ["offline-first", "local DB", "action queue", "optimistic UI", "conflict resolution", "WatermelonDB"],
+    "topic": "mobile",
+    "difficulty": "hard",
+    "domain": "software_engineering",
+    "roles": ["mobile", "fullstack"]
   }
 ]
